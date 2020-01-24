@@ -1,0 +1,11 @@
+<h3>Detalhes Consulta</h3>
+<button class="btn btn-primary" (click)="onEdit(consulta.id)" >Editar</button> {{ ' ' }}
+<button class="btn btn-default" (click)="onCancel(consulta.pacienteId)">Voltar</button> <p></p>
+ID: {{ consulta.id }} <br> 
+PacienteId: {{ consulta.pacienteId }} <br>
+Data Consulta: {{ consulta.dtConsulta | date: 'dd/MM/yyyy' }} <br>
+Diagnóstico: {{ consulta.diagnostico }}<br>
+CID: {{ consulta.cid }}<br>
+Exames: {{ consulta.exames }}<br>
+Retorno: {{ consulta.retorno }}<br>
+Conduta: {{ consulta.conduta }}<br>

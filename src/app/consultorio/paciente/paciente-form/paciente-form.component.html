@@ -1,0 +1,68 @@
+<div *ngIf="submitted">
+  <table>
+    <tr *ngFor="let erro of erros ">
+      <td>{{ erro }}</td>
+    </tr>
+  </table>
+</div>
+<div style="max-width:400px">
+  <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">    
+    <label for="nome">Nome</label>
+    <input
+        type="text"
+        class="form-control"
+        id="nome"
+        placeholder="Nome Completo"
+        formControlName="nome"
+        [ngClass]="{ 'is-invalid': submitted && hasError('nome') }"
+    />
+    <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['required']">
+        Por favor informe um nome válido.
+    </div>    
+    <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['minlength']">
+      minlength
+    </div>    
+    <div class="invalid-feedback" *ngIf="hasError('nome') && hasError('nome')['maxlength']">
+      maxlength
+    </div>    
+    <label for="nome">Sexo</label>
+    <select
+        class="form-control"
+        id="sexo"        
+        formControlName="sexo"        
+    >
+      <option value="M">Masculino</option>
+      <option value="F">Feminino</option>
+    </select>
+    <label for="nome">Dt Nascimento</label>
+    <input
+        type="date"
+        class="form-control"
+        id="dtNascimento"
+        placeholder="Dt Nascimento"
+        formControlName="dtNascimento"
+    />
+    <label for="nome">Prontuario</label>
+    <input
+        type="text"
+        class="form-control"
+        id="prontuario"
+        placeholder="Prontuario"
+        formControlName="prontuario"        
+    />
+    <label for="nome">Convenio</label>
+    <input
+        type="text"
+        class="form-control"
+        id="convenio"
+        placeholder="Convenio"
+        formControlName="convenio"        
+    />
+    
+    <p></p>
+    <div>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>{{' '}}
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

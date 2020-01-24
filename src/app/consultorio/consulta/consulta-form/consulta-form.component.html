@@ -1,0 +1,64 @@
+<div *ngIf="submitted">
+    <table>
+      <tr *ngFor="let erro of erros ">
+        <td>{{ erro }}</td>
+      </tr>
+    </table>
+  </div>
+        
+    <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">    
+      <label for="nome">Dt Consulta</label>
+      <input
+          type="date"
+          class="form-control"
+          id="dtConsulta"          
+          formControlName="dtConsulta"          
+      />      
+      <label for="nome">Diagnostico</label>
+      <input
+          type="text"
+          class="form-control"
+          id="diagnostico"
+          placeholder="Diagnostico"
+          formControlName="diagnostico"          
+      />      
+      <label for="nome">Exames</label>
+      <input
+          type="text"
+          class="form-control"
+          id="exames"
+          placeholder="Exames"
+          formControlName="exames"          
+      />      
+      <label for="nome">Retorno</label>
+      <input
+          type="text"
+          class="form-control"
+          id="retorno"
+          placeholder="Retorno"
+          formControlName="retorno"          
+      />      
+      <label for="nome">Conduta</label>
+      <input
+          type="text"
+          class="form-control"
+          id="conduta"
+          placeholder="Conduta"
+          formControlName="conduta"          
+      />            
+      <label for="nome">Cid</label>
+      <input
+          type="text"
+          class="form-control"
+          id="cid"
+          placeholder="Cid"
+          formControlName="cid"                    
+      />            
+      
+      <p></p>
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>{{' '}}
+        <button type="button" class="btn btn-secondary" (click)="onCancel(pacienteid)">Cancelar</button>
+      </div>
+    </form>
+    

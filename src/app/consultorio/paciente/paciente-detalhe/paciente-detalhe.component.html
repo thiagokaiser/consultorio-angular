@@ -1,0 +1,13 @@
+<span style="font-size: 24px;">Detalhe Paciente</span><p></p>
+<button class="btn btn-primary" (click)="onEdit(paciente.id)" >Editar</button> {{ ' ' }}
+<button class="btn btn-default" (click)="onCancel()">Voltar</button>
+<p></p>
+Id: {{ paciente.id }} <br>
+Nome: {{ paciente.nome }} <br>
+Sexo: {{ paciente.sexo }} <br>
+Dt Nasc: {{ paciente.dtNascimento | date: 'dd/MM/yyyy' }} <br>
+Prontuario: {{ paciente.prontuario }} <br>
+Convenio: {{ paciente.convenio }} <br>
+<p></p>
+<hr style="margin:1px" />                                     
+<router-outlet></router-outlet>
