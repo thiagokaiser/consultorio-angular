@@ -9,6 +9,7 @@ import { ConsultorioModule } from './consultorio/consultorio.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PacienteDetalheComponent } from './consultorio/paciente/paciente-detalhe/paciente-detalhe.component';
 import { SharedModule } from './shared/shared.module';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     AdminlteModule,
     ConsultorioModule,
+    SecurityModule,
     ModalModule.forRoot(),
     SharedModule    
   ],

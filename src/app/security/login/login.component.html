@@ -1,0 +1,49 @@
+<body class="login-page">    
+    <div class="login-box">
+        <div class="login-box-body">
+            <h1 class="text-center">Login</h1>                
+            <div class="modal-body">                
+                    
+                <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">    
+                    <label for="email">Email</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        placeholder="Email"
+                        formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && hasError('email') }"
+                    />
+                    <div class="invalid-feedback" *ngIf="hasError('email')">
+                        Por favor informe um email válido.
+                    </div>                        
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Password"
+                        formControlName="password"
+                        [ngClass]="{ 'is-invalid': submitted && hasError('password') }"
+                    />
+                    <div class="invalid-feedback" *ngIf="hasError('password')">
+                        Por favor informe uma senha.
+                    </div>              
+                    <div *ngIf="submitted">
+                        <p></p>
+                        {{ erros }}
+                    </div>
+                    <p></p>          
+                    <div>
+                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-lg btn-block" (click)="login()">Login</button>{{' '}}                        
+                    </div>
+                </form>         
+                <p></p>                                    
+                <ul class="">
+                    <li><a href="#">Registrar</a></li>   
+                    <li><a href="#">Esqueceu a senha?</a></li>   
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
