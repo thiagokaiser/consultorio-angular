@@ -9,8 +9,7 @@ import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-paciente-lista',
-  templateUrl: './paciente-lista.component.html',
-  styleUrls: ['./paciente-lista.component.css']
+  templateUrl: './paciente-lista.component.html'
 })
 export class PacienteListaComponent implements OnInit {
 

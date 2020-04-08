@@ -6,8 +6,7 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-consulta-detalhe',
-  templateUrl: './consulta-detalhe.component.html',
-  styleUrls: ['./consulta-detalhe.component.css']
+  templateUrl: './consulta-detalhe.component.html'
 })
 export class ConsultaDetalheComponent implements OnInit {
 

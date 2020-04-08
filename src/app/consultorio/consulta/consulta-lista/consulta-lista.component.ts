@@ -10,8 +10,7 @@ import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-consulta-lista',
-  templateUrl: './consulta-lista.component.html',
-  styleUrls: ['./consulta-lista.component.css']
+  templateUrl: './consulta-lista.component.html'
 })
 export class ConsultaListaComponent implements OnInit {
 

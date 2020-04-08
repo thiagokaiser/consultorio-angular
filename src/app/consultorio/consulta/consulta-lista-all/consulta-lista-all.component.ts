@@ -7,8 +7,7 @@ import { map, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-consulta-lista-all',
-  templateUrl: './consulta-lista-all.component.html',
-  styleUrls: ['./consulta-lista-all.component.css']
+  templateUrl: './consulta-lista-all.component.html'
 })
 export class ConsultaListaAllComponent implements OnInit {  
 

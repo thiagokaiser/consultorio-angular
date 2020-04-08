@@ -7,8 +7,7 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-paciente-form',
-  templateUrl: './paciente-form.component.html',
-  styleUrls: ['./paciente-form.component.css']
+  templateUrl: './paciente-form.component.html'
 })
 export class PacienteFormComponent implements OnInit {
 

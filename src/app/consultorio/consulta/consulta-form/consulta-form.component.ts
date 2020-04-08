@@ -7,8 +7,7 @@ import { observable } from 'rxjs';
 
 @Component({
   selector: 'app-consulta-form',
-  templateUrl: './consulta-form.component.html',
-  styleUrls: ['./consulta-form.component.css']
+  templateUrl: './consulta-form.component.html'
 })
 export class ConsultaFormComponent implements OnInit {
 

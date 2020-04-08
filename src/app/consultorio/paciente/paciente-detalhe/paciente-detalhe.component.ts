@@ -7,8 +7,7 @@ import { ConsultaService } from '../../consulta/consulta.service';
 
 @Component({
   selector: 'app-paciente-detalhe',
-  templateUrl: './paciente-detalhe.component.html',
-  styleUrls: ['./paciente-detalhe.component.css']
+  templateUrl: './paciente-detalhe.component.html'
 })
 export class PacienteDetalheComponent implements OnInit {
 
