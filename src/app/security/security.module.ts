@@ -5,6 +5,7 @@ import { RegistrarComponent } from './registrar/registrar.component';
 import { SecurityRoutingModule } from './security-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './login/login.service';
+import { loggedInGuard } from './loggedIn.guard';
 
 
 
@@ -15,6 +16,6 @@ import { LoginService } from './login/login.service';
     SecurityRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService]
+  providers: []
 })
 export class SecurityModule { }

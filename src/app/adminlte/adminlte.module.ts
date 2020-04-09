@@ -5,9 +5,6 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { ConsultorioModule } from '../consultorio/consultorio.module';
-
-
 
 @NgModule({
   declarations: [
@@ -18,15 +15,13 @@ import { ConsultorioModule } from '../consultorio/consultorio.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    ConsultorioModule
+    AppRoutingModule
   ],
   exports:[
     BodyComponent,
     HeaderComponent,
     MenuComponent,
     FooterComponent
-
   ]
 })
 export class AdminlteModule { }

@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PacienteDetalheComponent } from './consultorio/paciente/paciente-detalhe/paciente-detalhe.component';
 import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
+import { LoginService } from './security/login/login.service';
+import { loggedInGuard } from './security/loggedIn.guard';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,11 @@ import { SecurityModule } from './security/security.module';
     BrowserModule,
     AppRoutingModule,
     AdminlteModule,
-    ConsultorioModule,
-    SecurityModule,
     ModalModule.forRoot(),
     SharedModule    
   ],
   exports:[],
-  providers: [],
+  providers: [LoginService, loggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

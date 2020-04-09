@@ -58,10 +58,10 @@ export class PacienteFormComponent implements OnInit {
           console.log('save');
           //this.modal.showAlertSuccess(msgSuccess);
           if(this.idRegistro){
-            this.router.navigate(['/paciente/detalhe', this.idRegistro]);
+            this.router.navigate(['/consultorio/paciente/detalhe', this.idRegistro]);
           }
           else{
-            this.router.navigate(['/paciente']);
+            this.router.navigate(['/consultorio/paciente']);
           }          
           //this.location.back();
           this.pacienteLista.carregaPacientes();
@@ -79,7 +79,7 @@ export class PacienteFormComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
     console.log('cancel');
-    this.router.navigate(['/paciente']);
+    this.router.navigate(['/consultorio/paciente']);
 
   }
 

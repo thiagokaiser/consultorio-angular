@@ -52,7 +52,7 @@ export class ConsultaListaComponent implements OnInit {
   }
   onNovaConsulta(){    
     let id = this.route.snapshot.paramMap.get('id');    
-    this.router.navigate(['/consulta/novo/', id]);
+    this.router.navigate(['/consultorio/consulta/novo/', id]);
   }  
   onDelete(consulta :Consulta){
     const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');

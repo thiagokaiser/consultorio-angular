@@ -59,7 +59,7 @@ export class ConsultaFormComponent implements OnInit {
       this.service.save(this.form.value).subscribe(
         success => {
           console.log('success');
-          this.router.navigate(['/paciente/detalhe', this.idPaciente]);          
+          this.router.navigate(['/consultorio/paciente/detalhe', this.idPaciente]);          
         },
         error => {
           console.log(error);
@@ -76,7 +76,7 @@ export class ConsultaFormComponent implements OnInit {
     this.form.reset();
     console.log('cancel');
     console.log(id);
-    this.router.navigate(['/paciente/detalhe', id]);
+    this.router.navigate(['/consultorio/paciente/detalhe', id]);
 
   }
 

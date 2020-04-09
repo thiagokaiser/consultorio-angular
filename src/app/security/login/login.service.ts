@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../user';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -11,7 +12,8 @@ export class LoginService{
 
     user: User;
 
-    constructor(private http:HttpClient){}
+    constructor(private http:HttpClient,
+                private router: Router){}
 
     login(email: string, password: string): Observable<User>{
 
@@ -23,5 +25,9 @@ export class LoginService{
 
     isLoggedIn(): boolean {
         return this.user !== undefined;
+    }
+
+    handleLogin(path?: string){
+        this.router.navigate(['/security/login', path]);
     }
 }

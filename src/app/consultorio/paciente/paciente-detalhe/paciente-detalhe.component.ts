@@ -29,10 +29,10 @@ export class PacienteDetalheComponent implements OnInit {
   }
 
   onEdit(id) {    
-    this.router.navigate(['/paciente/editar', id]);    
+    this.router.navigate(['/consultorio/paciente/editar', id]);    
   }
   onCancel(){
-    this.router.navigate(['/paciente']);
+    this.router.navigate(['/consultorio/paciente']);
   }
   onRefresh(){    
     let pacient = this.route.snapshot.data['paciente'];           

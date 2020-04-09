@@ -28,10 +28,10 @@ export class ConsultaDetalheComponent implements OnInit {
   }
 
   onEdit(id) {    
-    this.router.navigate(['/consulta/editar', id]);    
+    this.router.navigate(['/consultorio/consulta/editar', id]);    
   }
   onCancel(id){
-    this.router.navigate(['/paciente/detalhe/', id]);
+    this.router.navigate(['/consultorio/paciente/detalhe/', id]);
   }
   onRefresh(){    
     let consult = this.route.snapshot.data['consulta'];           

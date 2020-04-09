@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { loggedInGuard } from './security/loggedIn.guard';
 
 
 const routes: Routes = [
   {
     path: 'consultorio',
-    loadChildren: './consultorio/consultorio.module#ConsultorioModule'    
+    loadChildren: './consultorio/consultorio.module#ConsultorioModule',
+    canLoad: [loggedInGuard]    
   },
   {
     path: 'security',

@@ -1,8 +1,11 @@
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body *ngIf="isLoggedIn(), else loginTemplate" class="hold-transition skin-blue-light sidebar-mini">
   <div class="wrapper">
     <app-header></app-header>
     <app-menu></app-menu>
     <app-body></app-body>
     <app-footer></app-footer>
-  </div>
+  </div>  
 </body>
+<ng-template #loginTemplate>
+  <router-outlet></router-outlet>
+</ng-template>

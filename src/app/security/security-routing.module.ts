@@ -8,7 +8,10 @@ const routes: Routes = [
     path: 'registrar', component: RegistrarComponent    
   },
   {
-    path: 'login', component: LoginComponent    
+    path: 'login/:to', component: LoginComponent
+  },
+  {
+    path: 'login', component: LoginComponent
   }
 ];
 
