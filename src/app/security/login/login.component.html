@@ -5,34 +5,16 @@
             <div class="modal-body">                
                     
                 <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">    
-                    <label for="email">Email</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="email"
-                        placeholder="Email"
-                        formControlName="email"
-                        [ngClass]="{ 'is-invalid': submitted && hasError('email') }"
-                    />
-                    <div class="invalid-feedback" *ngIf="hasError('email')">
-                        Por favor informe um email válido.
-                    </div>                        
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        class="form-control"
-                        id="password"
-                        placeholder="Password"
-                        formControlName="password"
-                        [ngClass]="{ 'is-invalid': submitted && hasError('password') }"
-                    />
-                    <div class="invalid-feedback" *ngIf="hasError('password')">
-                        Por favor informe uma senha.
-                    </div>              
-                    <div *ngIf="submitted">
-                        <p></p>
-                        {{ erros }}
-                    </div>
+                    
+                    <app-input-container errorMessage="Email invalido" label="Email">                    
+                        <input type="text"class="form-control" id="email" placeholder="Email" formControlName="email"/>
+                    </app-input-container>
+                    
+                    <app-input-container errorMessage="Campo Obrigatorio" label="Password">                            
+                        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"/>
+                    </app-input-container>
+                    
+                    <span class="text-red" *ngIf="submitted"><i class="fa fa-remove"></i>{{ erros }}</span>
                     <p></p>          
                     <div>
                         <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-lg btn-block" (click)="login()">Login</button>{{' '}}                        

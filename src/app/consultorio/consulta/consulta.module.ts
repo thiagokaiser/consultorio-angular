@@ -7,6 +7,7 @@ import { ConsultaRoutingModule } from './consulta-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConsultaListaAllComponent } from './consulta-lista-all/consulta-lista-all.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,10 @@ import {NgxPaginationModule} from 'ngx-pagination';
   imports: [
     CommonModule,
     ConsultaRoutingModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    SharedModule
   ],
   providers:[
     ConsultaDetalheComponent,

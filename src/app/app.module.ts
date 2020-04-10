@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 import { LoginService } from './security/login/login.service';
 import { loggedInGuard } from './security/loggedIn.guard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { loggedInGuard } from './security/loggedIn.guard';
     BrowserModule,
     AppRoutingModule,
     AdminlteModule,
+    ReactiveFormsModule,
     ModalModule.forRoot(),
     SharedModule    
   ],

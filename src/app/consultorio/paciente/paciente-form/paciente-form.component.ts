@@ -31,23 +31,19 @@ export class PacienteFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [paciente.id],
       nome: [paciente.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
-      dtNascimento: [new Date(paciente.dtNascimento).toISOString().substring(0,10)],
-      prontuario: [paciente.prontuario],
-      convenio: [paciente.convenio],
-      sexo: [paciente.sexo]
+      dtNascimento: [new Date(paciente.dtNascimento).toISOString().substring(0,10), [Validators.required]],
+      prontuario: [paciente.prontuario, [Validators.required]],
+      convenio: [paciente.convenio, [Validators.required]],
+      sexo: [paciente.sexo, [Validators.required]]
     });
   }
 
-  hasError(field: string) {
-    return this.form.get(field).errors;
-  }
   onSubmit() {    
     this.submitted = true;
     console.log(this.form.value);
     if (this.form.valid) {
       console.log('submit');
-      let msgSuccess = 'Criado com sucesso';
-      let msgError   = 'Erro ao atualizar';
+      let msgSuccess = 'Criado com sucesso';      
       this.idRegistro = this.form.value.id;
       if (this.idRegistro){
         msgSuccess = 'Alterado com sucesso';

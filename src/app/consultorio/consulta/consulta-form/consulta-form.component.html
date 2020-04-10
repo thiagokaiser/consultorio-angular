@@ -7,53 +7,31 @@
   </div>
         
     <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">    
-      <label for="nome">Dt Consulta</label>
-      <input
-          type="date"
-          class="form-control"
-          id="dtConsulta"          
-          formControlName="dtConsulta"          
-      />      
-      <label for="nome">Diagnostico</label>
-      <input
-          type="text"
-          class="form-control"
-          id="diagnostico"
-          placeholder="Diagnostico"
-          formControlName="diagnostico"          
-      />      
-      <label for="nome">Exames</label>
-      <input
-          type="text"
-          class="form-control"
-          id="exames"
-          placeholder="Exames"
-          formControlName="exames"          
-      />      
-      <label for="nome">Retorno</label>
-      <input
-          type="text"
-          class="form-control"
-          id="retorno"
-          placeholder="Retorno"
-          formControlName="retorno"          
-      />      
-      <label for="nome">Conduta</label>
-      <input
-          type="text"
-          class="form-control"
-          id="conduta"
-          placeholder="Conduta"
-          formControlName="conduta"          
-      />            
-      <label for="nome">Cid</label>
-      <input
-          type="text"
-          class="form-control"
-          id="cid"
-          placeholder="Cid"
-          formControlName="cid"                    
-      />            
+      
+      <app-input-container errorMessage="Campo Obrigatorio" label="Dt Consulta">            
+        <input type="date" class="form-control" id="dtConsulta" formControlName="dtConsulta"/>
+      </app-input-container>
+
+      <app-input-container errorMessage="Campo Obrigatorio" label="Diagnostico">      
+        <input type="text" class="form-control" id="diagnostico" placeholder="Diagnostico" formControlName="diagnostico"/>      
+      </app-input-container>
+
+      <app-input-container errorMessage="Campo Obrigatorio" label="Exames">      
+        <input type="text" class="form-control" id="exames" placeholder="Exames" formControlName="exames"/> 
+      </app-input-container>
+
+      <app-input-container errorMessage="Campo Obrigatorio" label="Retorno">           
+        <input type="text" class="form-control" id="retorno" placeholder="Retorno" formControlName="retorno"/>      
+      </app-input-container>
+
+      <app-input-container errorMessage="Campo Obrigatorio" label="Conduta">      
+        <input type="text" class="form-control" id="conduta" placeholder="Conduta" formControlName="conduta"/>            
+      </app-input-container>
+
+      <app-input-container errorMessage="Campo Obrigatorio" label="Cid">      
+        <input type="text" class="form-control" id="cid" placeholder="Cid" formControlName="cid"/>            
+      </app-input-container>
+    
       
       <p></p>
       <div>

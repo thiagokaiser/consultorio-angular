@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConsultaService } from '../consulta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultaListaComponent } from '../consulta-lista/consulta-lista.component';
@@ -22,8 +22,7 @@ export class ConsultaFormComponent implements OnInit {
     private fb: FormBuilder,
     private service: ConsultaService,        
     private route: ActivatedRoute,
-    private router: Router,
-    private consultaLista: ConsultaListaComponent
+    private router: Router    
   ) { }
 
   ngOnInit() {
@@ -32,12 +31,12 @@ export class ConsultaFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [consulta.id],
       pacienteId: [consulta.pacienteId],
-      conduta: [consulta.conduta],
-      dtConsulta: [new Date(consulta.dtConsulta).toISOString().substring(0,10)],
-      retorno: [consulta.retorno],
-      diagnostico: [consulta.diagnostico],
-      exames: [consulta.exames],
-      cid: [consulta.cid]
+      conduta: [consulta.conduta, [Validators.required]],
+      dtConsulta: [new Date(consulta.dtConsulta).toISOString().substring(0,10), [Validators.required]],
+      retorno: [consulta.retorno, [Validators.required]],
+      diagnostico: [consulta.diagnostico, [Validators.required]],
+      exames: [consulta.exames, [Validators.required]],
+      cid: [consulta.cid, [Validators.required]]
     });
   }
 
@@ -49,8 +48,7 @@ export class ConsultaFormComponent implements OnInit {
     console.log(this.form.value);
     if (this.form.valid) {
       console.log('submit');
-      let msgSuccess = 'Criado com sucesso';
-      let msgError   = 'Erro ao atualizar';      
+      let msgSuccess = 'Criado com sucesso';      
       this.idRegistro = this.form.value.id;
       this.idPaciente = this.form.value.pacienteId;
       if (this.idRegistro){

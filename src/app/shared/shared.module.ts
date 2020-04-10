@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CrudService } from './crud.service';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
-import { LoginService } from '../security/login/login.service';
-import { loggedInGuard } from '../security/loggedIn.guard';
-
-
+import { InputContainerComponent } from './input-container/input-container.component';
 
 @NgModule({
   declarations: [    
-  ConfirmModalComponent
+  ConfirmModalComponent, InputContainerComponent
 ],
   imports: [
-    CommonModule
+    CommonModule    
   ],
   exports:[
-    ConfirmModalComponent    
+    ConfirmModalComponent, InputContainerComponent
   ],
   entryComponents:[
     ConfirmModalComponent

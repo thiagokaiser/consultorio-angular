@@ -6,6 +6,7 @@ import { PacienteRoutingModule } from './paciente/paciente-routing.module';
 import { PacienteModule } from './paciente/paciente.module';
 import { ConsultaModule } from './consulta/consulta.module';
 import { ConsultaRoutingModule } from './consulta/consulta-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,11 @@ import { ConsultaRoutingModule } from './consulta/consulta-routing.module';
     PacienteRoutingModule,
     PacienteModule,
     ConsultaModule,
-    ConsultaRoutingModule    
+    ConsultaRoutingModule,
+    SharedModule
   ],
   exports:[
-    HomeComponent    
+    HomeComponent
   ]
 })
 export class ConsultorioModule { }

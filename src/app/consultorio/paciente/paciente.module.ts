@@ -7,6 +7,7 @@ import { PacienteRoutingModule } from './paciente-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConsultaDetalheComponent } from '../consulta/consulta-detalhe/consulta-detalhe.component';
 import { ConsultaModule } from '../consulta/consulta.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -18,9 +19,10 @@ import { ConsultaModule } from '../consulta/consulta.module';
   ],
   imports: [
     CommonModule,
-    PacienteRoutingModule,
-    ReactiveFormsModule,
-    ConsultaModule
+    PacienteRoutingModule,  
+    ReactiveFormsModule,  
+    ConsultaModule,
+    SharedModule
   ],
   providers:[
     PacienteDetalheComponent,

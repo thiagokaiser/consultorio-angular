@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-    }, { updateOn: 'blur'});
+    });
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
   }
 

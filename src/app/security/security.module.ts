@@ -6,6 +6,7 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './login/login.service';
 import { loggedInGuard } from './loggedIn.guard';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { loggedInGuard } from './loggedIn.guard';
   imports: [
     CommonModule,
     SecurityRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: []
 })
