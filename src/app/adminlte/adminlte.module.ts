@@ -5,13 +5,15 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     BodyComponent,
     HeaderComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,

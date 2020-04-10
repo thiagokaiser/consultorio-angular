@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: 'consultorio',
     loadChildren: './consultorio/consultorio.module#ConsultorioModule',
-    canLoad: [loggedInGuard]    
+    canLoad: [loggedInGuard], canActivate: [loggedInGuard]
   },
   {
     path: 'security',

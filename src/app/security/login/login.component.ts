@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-    });
-    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
+    }, { updateOn: 'blur'});
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
   }
 
   hasError(field: string){
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
                               this.erros = error.error.Message;          
                             },
                             ()=>{
-                              this.router.navigate([this.navigateTo]);
+                              this.router.navigate([atob(this.navigateTo)]);
                             });
   }
 
