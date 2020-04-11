@@ -3,7 +3,7 @@ import { ConsultaService } from '../consulta.service';
 import { Observable, pipe, observable, BehaviorSubject } from 'rxjs';
 import { Consulta } from '../consulta';
 import { PaginationInstance } from 'ngx-pagination';
-import { map, take, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-consulta-lista-all',

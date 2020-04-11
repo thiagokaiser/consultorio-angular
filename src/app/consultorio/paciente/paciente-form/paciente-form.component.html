@@ -13,7 +13,7 @@
       <div *ngIf="submitted">
         <table>
           <tr *ngFor="let erro of erros ">
-            <td>{{ erro }}</td>
+            <td><span class="text-red"><i class="fa fa-remove"></i>{{ erro }}</span></td>
           </tr>
         </table>
       </div>

@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PacienteService } from '../paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteListaComponent } from '../paciente-lista/paciente-lista.component';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-paciente-form',
@@ -18,8 +17,7 @@ export class PacienteFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: PacienteService,    
-    private location: Location,
+    private service: PacienteService,        
     private route: ActivatedRoute,
     private router: Router,
     private pacienteLista: PacienteListaComponent
@@ -68,14 +66,12 @@ export class PacienteFormComponent implements OnInit {
       );      
     }
     else{
-      this.form.markAllAsTouched();
-      console.log('form invalid');
+      this.form.markAllAsTouched();      
     }
   }
   onCancel() {
     this.submitted = false;
-    this.form.reset();
-    console.log('cancel');
+    this.form.reset();    
     this.router.navigate(['/consultorio/paciente']);
 
   }

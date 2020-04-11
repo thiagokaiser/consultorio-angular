@@ -1,42 +1,49 @@
-<div *ngIf="submitted">
-    <table>
-      <tr *ngFor="let erro of erros ">
-        <td>{{ erro }}</td>
-      </tr>
-    </table>
+<div class="box box-primary">
+  <div class="box-header with-border">
+      <h3 class="box-title">Nova Consulta</h3>      
   </div>
+  <div class="box-body">   
+    <div *ngIf="submitted">
+      <table>
+        <tr *ngFor="let erro of erros ">
+          <td><span class="text-red"><i class="fa fa-remove"></i>{{ erro }}</span></td>
+        </tr>
+      </table>
+    </div>
+    <div style="max-width:400px">
+      <form [formGroup]="form" style="padding-top: 10px">    
         
-    <form class="needs-validation" novalidate [formGroup]="form" style="padding-top: 10px">    
+        <app-input-container errorMessage="Campo Obrigatorio" label="Dt Consulta">            
+          <input type="date" class="form-control" id="dtConsulta" formControlName="dtConsulta"/>
+        </app-input-container>
+
+        <app-input-container errorMessage="Campo Obrigatorio" label="Diagnostico">      
+          <input type="text" class="form-control" id="diagnostico" placeholder="Diagnostico" formControlName="diagnostico"/>      
+        </app-input-container>
+
+        <app-input-container errorMessage="Campo Obrigatorio" label="Exames">      
+          <input type="text" class="form-control" id="exames" placeholder="Exames" formControlName="exames"/> 
+        </app-input-container>
+
+        <app-input-container errorMessage="Campo Obrigatorio" label="Retorno">           
+          <input type="text" class="form-control" id="retorno" placeholder="Retorno" formControlName="retorno"/>      
+        </app-input-container>
+
+        <app-input-container errorMessage="Campo Obrigatorio" label="Conduta">      
+          <input type="text" class="form-control" id="conduta" placeholder="Conduta" formControlName="conduta"/>            
+        </app-input-container>
+
+        <app-input-container errorMessage="Campo Obrigatorio" label="Cid">      
+          <input type="text" class="form-control" id="cid" placeholder="Cid" formControlName="cid"/>            
+        </app-input-container>
       
-      <app-input-container errorMessage="Campo Obrigatorio" label="Dt Consulta">            
-        <input type="date" class="form-control" id="dtConsulta" formControlName="dtConsulta"/>
-      </app-input-container>
-
-      <app-input-container errorMessage="Campo Obrigatorio" label="Diagnostico">      
-        <input type="text" class="form-control" id="diagnostico" placeholder="Diagnostico" formControlName="diagnostico"/>      
-      </app-input-container>
-
-      <app-input-container errorMessage="Campo Obrigatorio" label="Exames">      
-        <input type="text" class="form-control" id="exames" placeholder="Exames" formControlName="exames"/> 
-      </app-input-container>
-
-      <app-input-container errorMessage="Campo Obrigatorio" label="Retorno">           
-        <input type="text" class="form-control" id="retorno" placeholder="Retorno" formControlName="retorno"/>      
-      </app-input-container>
-
-      <app-input-container errorMessage="Campo Obrigatorio" label="Conduta">      
-        <input type="text" class="form-control" id="conduta" placeholder="Conduta" formControlName="conduta"/>            
-      </app-input-container>
-
-      <app-input-container errorMessage="Campo Obrigatorio" label="Cid">      
-        <input type="text" class="form-control" id="cid" placeholder="Cid" formControlName="cid"/>            
-      </app-input-container>
-    
-      
-      <p></p>
-      <div>
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>{{' '}}
-        <button type="button" class="btn btn-secondary" (click)="onCancel(pacienteid)">Cancelar</button>
-      </div>
-    </form>
-    
+        
+        <p></p>
+        <div>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>{{' '}}
+          <button type="button" class="btn btn-secondary" (click)="onCancel(pacienteid)">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

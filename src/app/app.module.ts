@@ -22,8 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    AdminlteModule,
-    ReactiveFormsModule,
+    AdminlteModule,    
     ModalModule.forRoot(),
     SharedModule    
   ],

@@ -13,12 +13,35 @@
             <button class="btn btn-primary" (click)="onEdit(paciente.id)" >Editar</button> {{ ' ' }}
             <button class="btn btn-default" (click)="onCancel()">Voltar</button>
             <p></p>
-            Id: {{ paciente.id }} <br>
-            Nome: {{ paciente.nome }} <br>
-            Sexo: {{ paciente.sexo }} <br>
-            Dt Nasc: {{ paciente.dtNascimento | date: 'dd/MM/yyyy' }} <br>
-            Prontuario: {{ paciente.prontuario }} <br>
-            Convenio: {{ paciente.convenio }} <br>            
+
+            <table class="table" style="max-width:500px;">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ paciente.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nome</th>
+                        <td>{{ paciente.nome }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sexo</th>
+                        <td>{{ paciente.sexo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dt Nasc</th>
+                        <td>{{ paciente.dtNascimento | date: 'dd/MM/yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prontuario</th>
+                        <td>{{ paciente.prontuario }}</td>
+                    </tr>
+                    <tr>
+                        <th>Convenio</th>
+                        <td>{{ paciente.convenio }}</td>
+                    </tr>                    
+                </tbody>
+            </table>            
         </div>
     </div>    
     <router-outlet></router-outlet>

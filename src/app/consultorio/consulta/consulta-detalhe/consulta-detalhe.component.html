@@ -1,11 +1,46 @@
-<h3>Detalhes Consulta</h3>
-<button class="btn btn-primary" (click)="onEdit(consulta.id)" >Editar</button> {{ ' ' }}
-<button class="btn btn-default" (click)="onCancel(consulta.pacienteId)">Voltar</button> <p></p>
-ID: {{ consulta.id }} <br> 
-PacienteId: {{ consulta.pacienteId }} <br>
-Data Consulta: {{ consulta.dtConsulta | date: 'dd/MM/yyyy' }} <br>
-Diagnóstico: {{ consulta.diagnostico }}<br>
-CID: {{ consulta.cid }}<br>
-Exames: {{ consulta.exames }}<br>
-Retorno: {{ consulta.retorno }}<br>
-Conduta: {{ consulta.conduta }}<br>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Consulta</h3>      
+    </div>
+    <div class="box-body">          
+        <button class="btn btn-primary" (click)="onEdit(consulta.id)" >Editar</button> {{ ' ' }}        
+        <button class="btn btn-default" (click)="onCancel(consulta.pacienteId)">Voltar</button> <p></p>
+
+        <table class="table" style="max-width:500px;">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ consulta.id }}</td>
+                </tr>
+                <tr>
+                    <th>PacienteId</th>
+                    <td>{{ consulta.pacienteId }}</td>
+                </tr>
+                <tr>
+                    <th>Data Consulta</th>
+                    <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy' }}</td>
+                </tr>
+                <tr>
+                    <th>Diagnóstico</th>
+                    <td>{{ consulta.diagnostico }}</td>
+                </tr>
+                <tr>
+                    <th>CID</th>
+                    <td>{{ consulta.cid }}</td>
+                </tr>
+                <tr>
+                    <th>Exames</th>
+                    <td>{{ consulta.exames }}</td>
+                </tr>
+                <tr>
+                    <th>Retorno</th>
+                    <td>{{ consulta.retorno }}</td>
+                </tr>
+                <tr>
+                    <th>Conduta</th>
+                    <td>{{ consulta.conduta }}</td>
+                </tr>
+            </tbody>
+        </table>              
+    </div>
+</div>

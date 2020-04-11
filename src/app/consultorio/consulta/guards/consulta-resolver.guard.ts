@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Consulta } from '../consulta';
 import { ConsultaService } from '../consulta.service';
@@ -14,13 +14,13 @@ export class ConsultaResolverGuard implements Resolve<Consulta> {
     private service: ConsultaService
   ){}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Consulta> {
-    if (route.params && route.params['id']){        
+    if (route.params && route.params['id']){              
       return this.service.loadByID(route.params['id']);
-    }
-    if (route.params && route.params['pacienteid']){        
+    }    
+    if (route.parent.params && route.parent.params['id']){          
       return of({
         id: 0,
-        pacienteId:  route.params['pacienteid'],
+        pacienteId:  route.parent.params['id'],
         conduta: null,
         dtConsulta: null,
         retorno: null,
@@ -29,7 +29,6 @@ export class ConsultaResolverGuard implements Resolve<Consulta> {
         cid: null       
       })
     }
-
     return of({
       id: 0,
       pacienteId: 0,

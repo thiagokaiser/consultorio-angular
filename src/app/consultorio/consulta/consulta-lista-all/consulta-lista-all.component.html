@@ -1,69 +1,84 @@
-<div *ngIf="consultas$ | async as consultas; else loading">
-  <input [(ngModel)]="searchtext" class="input-sm" /><button class="btn btn-default" (click)="onSearch(searchtext)"><i class="fa fa-search"></i></button>
-  Order By:   
-  <select class="" [ngModel]="orderby" (ngModelChange)="onOrderBy($event)">
-      <option value="dtconsulta ASC">Dt Consulta ASC</option>
-      <option value="dtconsulta DESC">Dt Consulta DESC</option>
-      <option value="nome ASC">Nome ASC</option>
-      <option value="nome DESC">Nome DESC</option>
-      <option value="id ASC">ID ASC</option>            
-      <option value="id DESC">ID DESC</option>            
-  </select>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Paciente</th>
-        <th>Dt Consulta</th>
-        <th>Diagnostico</th>
-        <th>Exames</th>
-        <th>Retorno</th>
-        <th>Conduta</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let consulta of consultas.consultas | paginate: config">
-        <td>{{ consulta.id }}</td>
-        <td>{{ consulta.paciente.nome }}</td>
-        <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
-        <td>{{ consulta.diagnostico }}</td>
-        <td>{{ consulta.exames }}</td>
-        <td>{{ consulta.retorno }}</td>
-        <td>{{ consulta.conduta }}</td>
-        <td>
-          <span class="float-right">
-            <button class="btn btn-warning btn-sm" (click)="onDetalhe(consulta.id)">
-              Detalhe
-            </button>
-            {{ ' ' }}
-            <button class="btn btn-danger btn-sm" (click)="onDelete(consulta)">
-                Remover
-              </button>
-          </span>
-        </td>
-      </tr>
-    </tbody>    
-  </table>
-  
-  <div class="row">
-    <div class="col-md-6">
-      <pagination-controls 
-        [id]="config.id"
-        (pageChange)="onPageChange($event)">
-      </pagination-controls>  
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+      Consultas
+      <small>Lista</small>
+  </h1>      
+</section>
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <div class="box box-primary">            
+    <div class="box-body">       
+      <div *ngIf="consultas$ | async as consultas; else loading">
+        <input [(ngModel)]="searchtext" class="input-sm" /><button class="btn btn-default" (click)="onSearch(searchtext)"><i class="fa fa-search"></i></button>
+        Order By:   
+        <select class="" [ngModel]="orderby" (ngModelChange)="onOrderBy($event)">
+            <option value="dtconsulta ASC">Dt Consulta ASC</option>
+            <option value="dtconsulta DESC">Dt Consulta DESC</option>
+            <option value="nome ASC">Nome ASC</option>
+            <option value="nome DESC">Nome DESC</option>
+            <option value="id ASC">ID ASC</option>            
+            <option value="id DESC">ID DESC</option>            
+        </select>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Paciente</th>
+              <th>Dt Consulta</th>
+              <th>Diagnostico</th>
+              <th>Exames</th>
+              <th>Retorno</th>
+              <th>Conduta</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let consulta of consultas.consultas | paginate: config">
+              <td>{{ consulta.id }}</td>
+              <td>{{ consulta.paciente.nome }}</td>
+              <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
+              <td>{{ consulta.diagnostico }}</td>
+              <td>{{ consulta.exames }}</td>
+              <td>{{ consulta.retorno }}</td>
+              <td>{{ consulta.conduta }}</td>
+              <td>
+                <span class="float-right">
+                  <button class="btn btn-warning btn-sm" (click)="onDetalhe(consulta.id)">
+                    Detalhe
+                  </button>
+                  {{ ' ' }}
+                  <button class="btn btn-danger btn-sm" (click)="onDelete(consulta)">
+                      Remover
+                    </button>
+                </span>
+              </td>
+            </tr>
+          </tbody>    
+        </table>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <pagination-controls 
+              [id]="config.id"
+              (pageChange)="onPageChange($event)">
+            </pagination-controls>  
+          </div>
+          <div class="col-md-6">
+            Pag.Size:
+            <select class="" [ngModel]="pagesize" (ngModelChange)="onPageSize($event)">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="100">100</option>
+            </select>
+          </div>    
+        </div>
+      </div>
+      <ng-template #loading>
+        <span>Carregando Consultas...</span>
+      </ng-template>   
     </div>
-    <div class="col-md-6">
-      Pag.Size:
-      <select class="" [ngModel]="pagesize" (ngModelChange)="onPageSize($event)">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="100">100</option>
-      </select>
-    </div>    
   </div>
-</div>
-<ng-template #loading>
-  <span>Carregando Consultas...</span>
-</ng-template>   
+</section>

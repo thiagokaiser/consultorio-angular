@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Consulta } from '../consulta';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-consulta-detalhe',
@@ -15,23 +14,20 @@ export class ConsultaDetalheComponent implements OnInit {
 
   constructor(    
     private route: ActivatedRoute,
-    private router: Router,
-    private location: Location) {                
-      route.params.subscribe(val => {
-        console.log(val);
+    private router: Router) {                
+      route.params.subscribe(val => {        
         this.onRefresh();
       });
     }
 
-  ngOnInit() {
-    //this.onRefresh();    
+  ngOnInit() {    
   }
 
-  onEdit(id) {    
-    this.router.navigate(['/consultorio/consulta/editar', id]);    
+  onEdit(id) {        
+    this.router.navigate(['editar'], { relativeTo: this.route });         
   }
   onCancel(id){
-    this.router.navigate(['/consultorio/paciente/detalhe/', id]);
+    this.router.navigate(['/consultorio/paciente/detalhe/', id]);    
   }
   onRefresh(){    
     let consult = this.route.snapshot.data['consulta'];           

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConsultaService } from '../consulta.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConsultaListaComponent } from '../consulta-lista/consulta-lista.component';
-import { observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-consulta-form',
@@ -22,7 +21,8 @@ export class ConsultaFormComponent implements OnInit {
     private fb: FormBuilder,
     private service: ConsultaService,        
     private route: ActivatedRoute,
-    private router: Router    
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -63,17 +63,13 @@ export class ConsultaFormComponent implements OnInit {
       );      
     }
     else{
-      this.form.markAllAsTouched();
-      console.log('form invalid');
+      this.form.markAllAsTouched();      
     }
   }
   onCancel(id) {
     this.submitted = false;
     this.form.reset();
-    console.log('cancel');
-    console.log(id);
-    this.router.navigate(['/consultorio/paciente/detalhe', id]);
-
+    this.location.back();
   }
 
 }

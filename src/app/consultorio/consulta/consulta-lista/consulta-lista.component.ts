@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
 import { Consulta } from '../consulta';
 import { ConsultaService } from '../consulta.service';
-import { ConsultaDetalheComponent } from '../consulta-detalhe/consulta-detalhe.component';
 import { catchError, switchMap, take } from 'rxjs/operators';
-import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { PacienteDetalheComponent } from '../../paciente/paciente-detalhe/paciente-detalhe.component';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
@@ -18,20 +16,16 @@ export class ConsultaListaComponent implements OnInit {
 
   constructor(
     private consultaService : ConsultaService,
-    private pacienteDetalhe : PacienteDetalheComponent,
     private router : Router,
     private route : ActivatedRoute,
     private alertService: AlertModalService  
   ){                
-      route.params.subscribe(val => {
-        console.log(val);
+      route.params.subscribe(val => {        
         this.onRefresh();
-      });
-     
+      });     
   }
 
-  ngOnInit() {
-    
+  ngOnInit() {    
   }
 
   carregaConsultas(){
@@ -41,19 +35,23 @@ export class ConsultaListaComponent implements OnInit {
         return EMPTY;
       })
     );
-
   }
+
   onRefresh(){    
     let id = this.route.snapshot.paramMap.get('id');    
     this.consultas$ = this.consultaService.listPaciente(id);
   }
-  onDetalhe(id){
-    this.pacienteDetalhe.onDetalhe(id);
+
+  onDetalhe(id){    
+    this.router.navigate(['consulta', id], { relativeTo: this.route });        
   }
+
   onNovaConsulta(){    
-    let id = this.route.snapshot.paramMap.get('id');    
-    this.router.navigate(['/consultorio/consulta/novo/', id]);
+    //let id = this.route.snapshot.paramMap.get('id');    
+    //this.router.navigate(['/consultorio/paciente/consulta/novo/', id]);
+    this.router.navigate(['consulta/novo'], { relativeTo: this.route });        
   }  
+  
   onDelete(consulta :Consulta){
     const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
     result$.asObservable().pipe(
