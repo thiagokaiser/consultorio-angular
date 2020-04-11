@@ -21,9 +21,7 @@ export class InputContainerComponent implements OnInit, AfterContentInit {
   ngOnInit() {
   }
 
-  ngAfterContentInit(){
-    console.log('control')
-    console.log(this.control)
+  ngAfterContentInit(){    
     this.input = this.control;
     if(this.input === undefined){
       throw new Error('Esse componente precisa ser usado com uma diretiva FormControlName')

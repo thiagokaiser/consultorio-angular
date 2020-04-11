@@ -39,10 +39,7 @@ export class ConsultaFormComponent implements OnInit {
       cid: [consulta.cid, [Validators.required]]
     });
   }
-
-  hasError(field: string) {
-    return this.form.get(field).errors;
-  }
+  
   onSubmit() {        
     this.submitted = true;
     console.log(this.form.value);
@@ -66,6 +63,7 @@ export class ConsultaFormComponent implements OnInit {
       );      
     }
     else{
+      this.form.markAllAsTouched();
       console.log('form invalid');
     }
   }

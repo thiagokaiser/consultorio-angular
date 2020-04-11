@@ -14,7 +14,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"/>
                     </app-input-container>
                     
-                    <span class="text-red" *ngIf="submitted"><i class="fa fa-remove"></i>{{ erros }}</span>
+                    <span class="text-red" *ngIf="hasError"><i class="fa fa-remove"></i>{{ erros }}</span>
                     <p></p>          
                     <div>
                         <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-lg btn-block" (click)="login()">Login</button>{{' '}}                        

@@ -40,7 +40,7 @@ export class PacienteFormComponent implements OnInit {
 
   onSubmit() {    
     this.submitted = true;
-    console.log(this.form.value);
+    console.log(this.form.value);    
     if (this.form.valid) {
       console.log('submit');
       let msgSuccess = 'Criado com sucesso';      
@@ -68,6 +68,7 @@ export class PacienteFormComponent implements OnInit {
       );      
     }
     else{
+      this.form.markAllAsTouched();
       console.log('form invalid');
     }
   }

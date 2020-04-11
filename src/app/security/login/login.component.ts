@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   erros = null;
   navigateTo: string;
+  hasError = false;
 
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
@@ -26,11 +27,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
-  }
-
-  hasError(field: string){
-    return this.form.get(field).errors;
-  }
+  }  
 
   login(){
     this.submitted = true;
@@ -42,6 +39,7 @@ export class LoginComponent implements OnInit {
                             },
                             error => {
                               console.log(error);
+                              this.hasError = true;
                               this.erros = error.error.Message;          
                             },
                             ()=>{
