@@ -3,6 +3,7 @@ import { CrudService } from 'src/app/shared/crud.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Consulta, ListConsulta } from './consulta';
+import { delay, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,9 @@ export class ConsultaService extends CrudService<Consulta>{
   listPage(pager){
     const headers = {
         headers: "'Content-Type': 'application/json'"
-    };            
-    return this.http.get<ListConsulta>(`${environment.API}consulta/all`, {headers: headers, params: pager});      
+    };                   
+    return this.http.get<ListConsulta>(`${environment.API}consulta/all`, {headers: headers, params: pager})
+                    .pipe(tap(console.log));
   }  
 
 }

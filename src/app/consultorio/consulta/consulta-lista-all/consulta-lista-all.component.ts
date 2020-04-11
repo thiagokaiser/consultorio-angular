@@ -51,10 +51,10 @@ export class ConsultaListaAllComponent implements OnInit {
   }
   onRefresh(){
     let params = {page: this.page, pagesize: this.pagesize, orderby: this.orderby, searchtext: "%" + this.searchtext + "%"};
-    
+        
     this.consultas$ = this.consultaService.listPage(params).pipe(
       tap(x => this.attTotalItems(x))
-    )       
+    )
   }
   attTotalItems(consultas){        
     this.config.totalItems = consultas['count'];

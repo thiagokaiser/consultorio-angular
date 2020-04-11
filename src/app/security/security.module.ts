@@ -4,8 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { SecurityRoutingModule } from './security-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginService } from './login/login.service';
-import { loggedInGuard } from './loggedIn.guard';
 import { SharedModule } from '../shared/shared.module';
 
 
