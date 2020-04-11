@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../user';
 import { tap, filter } from 'rxjs/operators';
 import { Router, NavigationEnd } from '@angular/router';
-
+import * as jwt_decode from "jwt-decode";
 
 @Injectable()
 export class LoginService{
@@ -24,10 +24,7 @@ export class LoginService{
         return this.http.post<User>(`${environment.API}security/login`,
                                     {email: email, password: password}).pipe(
                                         tap(user => this.user = {
-                                            firstName: 'teste',
-                                            lastName: 'asdasd',
-                                            email: user.email,
-                                            password: "",
+                                            email: user.email,                                            
                                             accessToken: user.accessToken
                                         })
                                     )                        
@@ -36,19 +33,23 @@ export class LoginService{
     saveToken(){        
         localStorage.clear();
         localStorage.setItem('sessionToken', this.user.accessToken);
+        this.saveUserName()
+    }
+
+    saveUserName(){
+        console.log('saveUserName')
+        var tokenDecoded = jwt_decode(this.user.accessToken);
+        this.user.firstName = tokenDecoded['firstName'];
+        this.user.lastName = tokenDecoded['lastName'];
     }
 
     isLoggedIn(): boolean {
         console.log('isLoggedIn')
-        if(localStorage.getItem('sessionToken') && this.user == undefined){
-            this.user = {
-                firstName: 'teste2',
-                lastName: 'asdasd2',
-                email: 'user.email',
-                password: 'assd',
-                accessToken: 'token'
-            }
-        }
+        var sessionToken = localStorage.getItem('sessionToken');        
+        if(sessionToken && this.user == undefined){
+            this.user = { accessToken: sessionToken}                                    
+            this.saveUserName()
+        }        
         return this.user !== undefined;
     }
 
