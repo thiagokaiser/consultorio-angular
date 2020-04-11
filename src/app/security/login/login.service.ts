@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../user';
 import { tap, filter } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class LoginService{
                                       .subscribe((e: NavigationEnd) => this.lastUrl = e.url);
                 }
 
-    login(email: string, password: string): Observable<User>{
+    login(email: string, password: string): Observable<User>{                        
 
         return this.http.post<User>(`${environment.API}security/login`,
                                     {email: email, password: password}).pipe(
@@ -33,7 +33,22 @@ export class LoginService{
                                     )                        
     }
 
+    saveToken(){        
+        localStorage.clear();
+        localStorage.setItem('sessionToken', this.user.accessToken);
+    }
+
     isLoggedIn(): boolean {
+        console.log('isLoggedIn')
+        if(localStorage.getItem('sessionToken') && this.user == undefined){
+            this.user = {
+                firstName: 'teste2',
+                lastName: 'asdasd2',
+                email: 'user.email',
+                password: 'assd',
+                accessToken: 'token'
+            }
+        }
         return this.user !== undefined;
     }
 
@@ -44,6 +59,7 @@ export class LoginService{
 
     logout(){
         this.user = undefined;
+        localStorage.clear();
         this.router.navigate(['/security/login']);
     }
 }

@@ -1,41 +1,56 @@
-  <button type="button" class="btn btn-primary" [routerLink]="['novo']">Novo</button>{{' '}}
-  <button type="button" class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
-  <p></p>
-  <table class="table table-hover" *ngIf="pacientes$ | async as pacientes; else loading">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Sexo</th>
-        <th>Dt Nasc</th>
-        <th>Prontuario</th>
-        <th>Convenio</th>        
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let paciente of pacientes">
-        <td>{{ paciente.id }}</td>
-        <td>{{ paciente.nome }}</td>
-        <td>{{ paciente.sexo }}</td>
-        <td>{{ paciente.dtNascimento | date: 'dd/MM/yyyy'}}</td>
-        <td>{{ paciente.prontuario }}</td>
-        <td>{{ paciente.convenio }}</td>        
-        <td>
-          <span class="float-right">
-            <button class="btn btn-warning btn-sm" (click)="onDetalhe(paciente.id)">
-              Detalhe
-            </button>
-            {{ ' ' }}
-            <button class="btn btn-danger btn-sm" (click)="onDelete(paciente)">
-                Remover
-              </button>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-<ng-template #loading>
-    <span>Carregando Pacientes...</span>
-</ng-template>    
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Pacientes
+    <small>Lista</small>
+  </h1>      
+</section>
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <div class="box box-primary">            
+    <div class="box-body">                        
+      <button type="button" class="btn btn-primary" [routerLink]="['novo']">Novo</button>{{' '}}
+      <button type="button" class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
+      <p></p>
+      <table class="table table-hover" *ngIf="pacientes$ | async as pacientes; else loading">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Sexo</th>
+            <th>Dt Nasc</th>
+            <th>Prontuario</th>
+            <th>Convenio</th>        
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let paciente of pacientes">
+            <td>{{ paciente.id }}</td>
+            <td>{{ paciente.nome }}</td>
+            <td>{{ paciente.sexo }}</td>
+            <td>{{ paciente.dtNascimento | date: 'dd/MM/yyyy'}}</td>
+            <td>{{ paciente.prontuario }}</td>
+            <td>{{ paciente.convenio }}</td>        
+            <td>
+              <span class="float-right">
+                <button class="btn btn-warning btn-sm" (click)="onDetalhe(paciente.id)">
+                  Detalhe
+                </button>
+                {{ ' ' }}
+                <button class="btn btn-danger btn-sm" (click)="onDelete(paciente)">
+                    Remover
+                  </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <ng-template #loading>
+          <span>Carregando Pacientes...</span>
+      </ng-template>    
+    </div>
+  </div>
+</section>

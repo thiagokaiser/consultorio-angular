@@ -1,39 +1,54 @@
-<div *ngIf="submitted">
-  <table>
-    <tr *ngFor="let erro of erros ">
-      <td>{{ erro }}</td>
-    </tr>
-  </table>
-</div>
-<div style="max-width:400px">
-  <form [formGroup]="form" style="padding-top: 10px">    
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Paciente
+    <small>Novo</small>
+  </h1>      
+</section>
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <div class="box box-primary">            
+    <div class="box-body">       
+      <div *ngIf="submitted">
+        <table>
+          <tr *ngFor="let erro of erros ">
+            <td>{{ erro }}</td>
+          </tr>
+        </table>
+      </div>
+      <div style="max-width:400px">
+        <form [formGroup]="form" style="padding-top: 10px">    
 
-    <app-input-container errorMessage="Campo Obrigatorio" label="Nome">     
-      <input type="text" class="form-control" id="nome" placeholder="Nome Completo" formControlName="nome"/>
-    </app-input-container>    
+          <app-input-container errorMessage="Campo Obrigatorio" label="Nome">     
+            <input type="text" class="form-control" id="nome" placeholder="Nome Completo" formControlName="nome"/>
+          </app-input-container>    
 
-    <app-input-container errorMessage="Campo Obrigatorio" label="Sexo">         
-      <select class="form-control" id="sexo" formControlName="sexo">
-        <option value="M">Masculino</option>
-        <option value="F">Feminino</option>
-      </select>
-    </app-input-container>
+          <app-input-container errorMessage="Campo Obrigatorio" label="Sexo">         
+            <select class="form-control" id="sexo" formControlName="sexo">
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+            </select>
+          </app-input-container>
 
-    <app-input-container errorMessage="Campo Obrigatorio" label="Dt Nascimento">         
-      <input type="date" class="form-control" id="dtNascimento" placeholder="Dt Nascimento" formControlName="dtNascimento"/>
-    </app-input-container>
+          <app-input-container errorMessage="Campo Obrigatorio" label="Dt Nascimento">         
+            <input type="date" class="form-control" id="dtNascimento" placeholder="Dt Nascimento" formControlName="dtNascimento"/>
+          </app-input-container>
 
-    <app-input-container errorMessage="Campo Obrigatorio" label="Prontuario">         
-      <input type="text" class="form-control" id="prontuario" placeholder="Prontuario" formControlName="prontuario"/>
-    </app-input-container>
+          <app-input-container errorMessage="Campo Obrigatorio" label="Prontuario">         
+            <input type="text" class="form-control" id="prontuario" placeholder="Prontuario" formControlName="prontuario"/>
+          </app-input-container>
 
-    <app-input-container errorMessage="Campo Obrigatorio" label="Convenio">               
-      <input type="text" class="form-control" id="convenio" placeholder="Convenio" formControlName="convenio"/>
-    </app-input-container>    
-    <p></p>
-    <div>
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>{{' '}}
-      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+          <app-input-container errorMessage="Campo Obrigatorio" label="Convenio">               
+            <input type="text" class="form-control" id="convenio" placeholder="Convenio" formControlName="convenio"/>
+          </app-input-container>    
+          <p></p>
+          <div>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>{{' '}}
+            <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+</section>

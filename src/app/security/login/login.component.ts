@@ -35,15 +35,16 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.form.value.email,
                             this.form.value.password)
                             .subscribe(success => {
-                              console.log(success);                              
+                              
                             },
                             error => {
                               console.log(error);
                               this.hasError = true;
-                              this.erros = error.error.Message;          
+                              this.erros = error.error.Message;
                             },
                             ()=>{
-                              this.router.navigate([atob(this.navigateTo)]);
+                              this.loginService.saveToken();
+                              this.router.navigate([atob(this.navigateTo)]);                              
                             });
   }
 
