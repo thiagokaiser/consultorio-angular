@@ -20,8 +20,7 @@ export class PacienteListaComponent implements OnInit {
     private service: PacienteService,
     private router: Router,
     private route: ActivatedRoute,
-    private pacienteDetalhe: PacienteDetalheComponent,
-    private alertService: AlertModalService
+    private pacienteDetalhe: PacienteDetalheComponent
   ) { }
 
   ngOnInit() {
@@ -38,16 +37,5 @@ export class PacienteListaComponent implements OnInit {
   onRefresh(){
     this.carregaPacientes();
   }
-  onDelete(paciente: Paciente) {
-    const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
-    result$.asObservable().pipe(
-      take(1),
-      switchMap(result => result ? this.service.remove(paciente.id) : EMPTY)
-    ).subscribe(
-      success => {
-        this.onRefresh();
-      },
-      error => console.log('erro')
-    );
-  }
+  
 }

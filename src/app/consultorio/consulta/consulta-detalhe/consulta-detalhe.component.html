@@ -2,10 +2,15 @@
     <div class="box-header with-border">
         <h3 class="box-title">Consulta</h3>      
     </div>
-    <div class="box-body">          
-        <button class="btn btn-primary" (click)="onEdit(consulta.id)" >Editar</button> {{ ' ' }}        
-        <button class="btn btn-default" (click)="onCancel(consulta.pacienteId)">Voltar</button> <p></p>
-        
+    <div class="box-body">           
+            
+        <div class="btn-group btn-group-sm" role="group">
+            <button class="btn btn-default" (click)="onEdit(consulta.id)"><i class="fa fa-file-o" aria-hidden="true"></i> Nova</button>    
+            <button class="btn btn-default" (click)="onEdit(consulta.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>
+            <button class="btn btn-default" (click)="onDelete(consulta)"><i class="fa fa-trash-o" aria-hidden="true"></i> Remover</button>
+            <button class="btn btn-default" (click)="onCancel(consulta.pacienteId)"><i class="fa fa-undo" aria-hidden="true"></i> Voltar</button>
+        </div>
+        <p></p>
         <table class="table" style="max-width:500px;">
             <tbody>
                 <tr>

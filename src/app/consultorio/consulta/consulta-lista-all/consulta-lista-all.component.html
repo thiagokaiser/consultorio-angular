@@ -21,7 +21,7 @@
             <option value="id ASC">ID ASC</option>            
             <option value="id DESC">ID DESC</option>            
         </select>
-        <table class="table table-hover">
+        <table class="table table-hover table-pointer">
           <thead>
             <tr>
               <th>#</th>
@@ -35,25 +35,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let consulta of consultas.consultas | paginate: config">
+            <tr *ngFor="let consulta of consultas.consultas | paginate: config" (click)="onDetalhe(consulta.id)">
               <td>{{ consulta.id }}</td>
               <td>{{ consulta.paciente.nome }}</td>
               <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
               <td>{{ consulta.diagnostico }}</td>
               <td>{{ consulta.exames }}</td>
               <td>{{ consulta.retorno }}</td>
-              <td>{{ consulta.conduta }}</td>
-              <td>
-                <span class="float-right">
-                  <button class="btn btn-warning btn-sm" (click)="onDetalhe(consulta.id)">
-                    Detalhe
-                  </button>
-                  {{ ' ' }}
-                  <button class="btn btn-danger btn-sm" (click)="onDelete(consulta)">
-                      Remover
-                    </button>
-                </span>
-              </td>
+              <td>{{ consulta.conduta }}</td>              
             </tr>
           </tbody>    
         </table>

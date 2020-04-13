@@ -3,10 +3,12 @@
       <h3 class="box-title">Consultas</h3>      
   </div>
   <div class="box-body">  
-    <button type="button" class="btn btn-primary" (click)="onNovaConsulta()">Nova</button>{{' '}}
-    <button type="button" class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
+    <div class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-default" (click)="onNovaConsulta()"><i class="fa fa-file-o" aria-hidden="true"></i> Nova</button>{{' '}}
+      <button type="button" class="btn btn-default" (click)="onRefresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
+    </div>
     <p></p>
-    <table class="table table-hover" *ngIf="consultas$ | async as consultas; else loading">
+    <table class="table table-hover table-pointer" *ngIf="consultas$ | async as consultas; else loading">
       <thead>
         <tr>
           <th>#</th>
@@ -20,25 +22,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let consulta of consultas">
+        <tr *ngFor="let consulta of consultas" (click)="onDetalhe(consulta.id)">
           <td>{{ consulta.id }}</td>
           <td>{{ consulta.paciente.nome }}</td>
           <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
           <td>{{ consulta.diagnostico }}</td>
           <td>{{ consulta.exames }}</td>
           <td>{{ consulta.retorno }}</td>
-          <td>{{ consulta.conduta }}</td>
-          <td>
-            <span class="float-right">
-              <button class="btn btn-warning btn-sm" (click)="onDetalhe(consulta.id)">
-                Detalhe
-              </button>
-              {{ ' ' }}
-              <button class="btn btn-danger btn-sm" (click)="onDelete(consulta)">
-                  Remover
-                </button>
-            </span>
-          </td>
+          <td>{{ consulta.conduta }}</td>          
         </tr>
       </tbody>
     </table>
