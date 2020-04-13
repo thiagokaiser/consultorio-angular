@@ -17,12 +17,9 @@ export class ConsultaService extends CrudService<Consulta>{
   listPaciente(id){    
     return this.http.get<Consulta[]>(`${environment.API}consulta/paciente/${id}`);
   }
-  listPage(pager){
-    const headers = {
-        headers: "'Content-Type': 'application/json'"
-    };                   
-    return this.http.get<ListConsulta>(`${environment.API}consulta/all`, {headers: headers, params: pager})
-                    .pipe(tap(console.log));
+  listPage(pager) {    
+    return this.http.get<ListConsulta>(`${environment.API}consulta/all`, {params: pager});
+                    //.pipe(tap(console.log));
   }  
 
 }

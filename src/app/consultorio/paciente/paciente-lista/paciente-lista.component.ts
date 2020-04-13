@@ -29,12 +29,7 @@ export class PacienteListaComponent implements OnInit {
   }
 
   carregaPacientes() {
-    this.pacientes$ = this.service.list().pipe(
-      catchError(error => {
-        console.error(error);        
-        return EMPTY;
-      })
-    );
+    this.pacientes$ = this.service.list();
   }
   onDetalhe(id){
     this.router.navigate(['detalhe', id], { relativeTo: this.route });

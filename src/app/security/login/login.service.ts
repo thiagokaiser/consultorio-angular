@@ -53,8 +53,7 @@ export class LoginService{
         return this.user !== undefined;
     }
 
-    handleLogin(path: string = this.lastUrl){
-        console.log(path);
+    handleLogin(path: string = this.lastUrl){        
         this.router.navigate(['/security/login', btoa(path)]);
     }
 

@@ -9,34 +9,30 @@ export class ApplicationErrorHandler extends ErrorHandler{
     constructor(private ns: NotificationService,
                 private injector: Injector,
                 private zone: NgZone){
-        super()
+        super()        
     }
 
-    handleError(errorResponse: HttpErrorResponse | any){
-        console.log(errorResponse instanceof HttpErrorResponse)
-        if(errorResponse instanceof HttpErrorResponse){
-            console.log(123123);
-            
-            const message = errorResponse.error.message            
-            this.zone.run(() => {
+    handleError(errorResponse: HttpErrorResponse | any){        
+        
+        this.zone.run(() => {        
+            if(errorResponse instanceof Error){
+                this.ns.notify('Recurso não encontrado.')
+            }
+            if(errorResponse instanceof HttpErrorResponse){                        
                 switch(errorResponse.status){
-                    case 401:
-                        console.log(111111111111111111111);                        
+                    case 401:                        
                         this.injector.get(LoginService).handleLogin()
-                        this.ns.notify(message || 'Não Autorizado.')
+                        this.ns.notify('Não Autorizado.')
                         break;
                     case 403:
-                        this.ns.notify(message || 'Não Autorizado.')
+                        this.ns.notify('Não Autorizado.')
                         break;
-                    case 404:
-                        console.log('case404')
-                        this.ns.notify(message || 'Recurso não encontrado.')
+                    case 404:                        
+                        this.ns.notify('Recurso não encontrado.')
                         break;                   
-
                 }
-            })
-        }
-        console.log('errorhandler')
+            }
+        })                
         super.handleError(errorResponse);
     }    
 }

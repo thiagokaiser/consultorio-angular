@@ -8,14 +8,10 @@ export class CrudService<T> {
   ) { }
 
   list() {
-    return this.http.get<T[]>(this.API_URL);
-      /*.pipe(
-        delay(1000),
-        tap(console.log)
-      );*/
+    return this.http.get<T[]>(this.API_URL);      
   }
   loadByID(id) {
-    return this.http.get<T>(`${this.API_URL}s/${id}`).pipe(take(1));
+    return this.http.get<T>(`${this.API_URL}/${id}`).pipe(take(1));
   }
   create(record: T) {
     return this.http.post(this.API_URL, record).pipe(take(1));

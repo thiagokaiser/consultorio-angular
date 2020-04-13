@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultaService } from '../consulta.service';
 import { Observable, pipe, observable, BehaviorSubject } from 'rxjs';
-import { Consulta } from '../consulta';
+import { Consulta, ListConsulta } from '../consulta';
 import { PaginationInstance } from 'ngx-pagination';
 import { tap } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 })
 export class ConsultaListaAllComponent implements OnInit {  
 
-  consultas$ : Observable<Consulta>
+  consultas$ : Observable<ListConsulta>;
   pagesize: number = 5;
   page: number = 1;
   searchtext: string = "";

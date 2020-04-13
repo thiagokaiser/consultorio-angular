@@ -37,10 +37,14 @@ export class LoginComponent implements OnInit {
                             .subscribe(success => {
                               
                             },
-                            error => {
-                              console.log(error);
-                              this.hasError = true;
-                              this.erros = error.error.Message;
+                            error => {                              
+                              this.hasError = true; 
+                              try{
+                                this.erros = error.error.Message;
+                              }                             
+                              catch{
+                                throw error;
+                              }                                                            
                             },
                             ()=>{
                               this.loginService.saveToken();
