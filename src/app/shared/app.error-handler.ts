@@ -21,7 +21,7 @@ export class ApplicationErrorHandler extends ErrorHandler{
             if(errorResponse instanceof HttpErrorResponse){                        
                 switch(errorResponse.status){
                     case 401:                        
-                        this.injector.get(LoginService).handleLogin()
+                        this.injector.get(LoginService).logout()
                         this.ns.notify('Não Autorizado.')
                         break;
                     case 403:
@@ -29,7 +29,11 @@ export class ApplicationErrorHandler extends ErrorHandler{
                         break;
                     case 404:                        
                         this.ns.notify('Recurso não encontrado.')
-                        break;                   
+                        break;
+                    default:
+                        this.ns.notify('Recurso não encontrado.')
+                        break;
+                                       
                 }
             }
         })                

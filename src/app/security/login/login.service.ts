@@ -36,19 +36,19 @@ export class LoginService{
         this.saveUserName()
     }
 
-    saveUserName(){
-        console.log('saveUserName')
+    saveUserName(){        
         var tokenDecoded = jwt_decode(this.user.accessToken);
         this.user.firstName = tokenDecoded['firstName'];
         this.user.lastName = tokenDecoded['lastName'];
     }
 
-    isLoggedIn(): boolean {
-        console.log('isLoggedIn')
-        var sessionToken = localStorage.getItem('sessionToken');        
-        if(sessionToken && this.user == undefined){
-            this.user = { accessToken: sessionToken}                                    
-            this.saveUserName()
+    isLoggedIn(): boolean {        
+        if(this.user == undefined){
+            var sessionToken = localStorage.getItem('sessionToken');        
+            if(sessionToken){
+                this.user = { accessToken: sessionToken}                                    
+                this.saveUserName()
+            }        
         }        
         return this.user !== undefined;
     }

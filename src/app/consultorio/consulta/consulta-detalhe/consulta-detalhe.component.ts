@@ -31,13 +31,20 @@ export class ConsultaDetalheComponent implements OnInit {
   onEdit(id) {        
     this.router.navigate(['editar'], { relativeTo: this.route });         
   }
+
   onCancel(id){
     this.router.navigate(['/consultorio/paciente/detalhe/', id]);    
   }
+
   onRefresh(){    
     let consult = this.route.snapshot.data['consulta'];           
     this.consulta = consult;    
   }  
+
+  onNew(){
+    this.router.navigate(['consulta/novo'], { relativeTo: this.route.parent });        
+  }
+
   onDelete(consulta :Consulta){
     const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
     result$.asObservable().pipe(

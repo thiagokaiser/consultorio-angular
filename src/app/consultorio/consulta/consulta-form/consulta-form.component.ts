@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConsultaService } from '../consulta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
 
 @Component({
   selector: 'app-consulta-form',
@@ -16,18 +17,24 @@ export class ConsultaFormComponent implements OnInit {
   idPaciente: number;
   erros = null;
   pacienteid: number;
+  formLabel: string;
 
   constructor(
     private fb: FormBuilder,
     private service: ConsultaService,        
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private ns: NotificationService
   ) { }
 
   ngOnInit() {
     const consulta = this.route.snapshot.data['consulta'];
+
+    this.formLabel = consulta.id == 0 ? 'Nova Consulta' : 'Edita Consulta'
+
     this.pacienteid = consulta.pacienteId;
+
     this.form = this.fb.group({
       id: [consulta.id],
       pacienteId: [consulta.pacienteId],
@@ -41,10 +48,8 @@ export class ConsultaFormComponent implements OnInit {
   }
   
   onSubmit() {        
-    this.submitted = true;
-    console.log(this.form.value);
-    if (this.form.valid) {
-      console.log('submit');
+    this.submitted = true;    
+    if (this.form.valid) {      
       let msgSuccess = 'Criado com sucesso';      
       this.idRegistro = this.form.value.id;
       this.idPaciente = this.form.value.pacienteId;
@@ -53,12 +58,12 @@ export class ConsultaFormComponent implements OnInit {
       }
       this.service.save(this.form.value).subscribe(
         success => {
-          console.log('success');
+          this.ns.notify(msgSuccess)
           this.router.navigate(['/consultorio/paciente/detalhe', this.idPaciente]);          
         },
-        error => {
-          console.log(error);
+        error => {          
           this.erros = error.error.erros;          
+          throw error
         }
       );      
     }

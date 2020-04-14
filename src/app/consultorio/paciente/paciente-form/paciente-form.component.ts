@@ -2,7 +2,8 @@ import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PacienteService } from '../paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PacienteListaComponent } from '../paciente-lista/paciente-lista.component';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-paciente-form',
@@ -14,17 +15,20 @@ export class PacienteFormComponent implements OnInit {
   submitted = false;
   idRegistro: number;
   erros = null;
+  formLabel: string;
 
   constructor(
     private fb: FormBuilder,
     private service: PacienteService,        
     private route: ActivatedRoute,
     private router: Router,
-    private pacienteLista: PacienteListaComponent
+    private ns: NotificationService,
+    private location: Location
   ) { }
 
   ngOnInit() {
     const paciente = this.route.snapshot.data['paciente'];
+    this.formLabel = paciente.id == 0 ? 'Novo' : 'Edita'
     
     this.form = this.fb.group({
       id: [paciente.id],
@@ -49,19 +53,17 @@ export class PacienteFormComponent implements OnInit {
       console.log(this.form);
       this.service.save(this.form.value).subscribe(
         success => {
-          console.log('save');
-          //this.modal.showAlertSuccess(msgSuccess);
+          this.ns.notify(msgSuccess)          
           if(this.idRegistro){
             this.router.navigate(['/consultorio/paciente/detalhe', this.idRegistro]);
           }
           else{
             this.router.navigate(['/consultorio/paciente']);
-          }          
-          //this.location.back();
-          this.pacienteLista.carregaPacientes();
+          }                              
         },
         error => {
-          this.erros = error.error.erros;          
+          this.erros = error.error.erros;
+          throw error          
         }
       );      
     }
@@ -69,10 +71,10 @@ export class PacienteFormComponent implements OnInit {
       this.form.markAllAsTouched();      
     }
   }
-  onCancel() {
+  onCancel() {    
     this.submitted = false;
-    this.form.reset();    
-    this.router.navigate(['/consultorio/paciente']);
+    this.form.reset();        
+    this.location.back();
 
   }
 

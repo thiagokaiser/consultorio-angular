@@ -29,6 +29,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
   exports:[
     HomeComponent
   ],
-  providers: [PacienteDetalheComponent, PacienteListaComponent, ConsultaDetalheComponent, ConsultaListaComponent]
+  providers: []
 })
 export class ConsultorioModule { }

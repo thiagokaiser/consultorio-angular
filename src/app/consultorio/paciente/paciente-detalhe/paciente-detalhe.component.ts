@@ -6,6 +6,7 @@ import { Consulta } from '../../consulta/consulta';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { PacienteService } from '../paciente.service';
 import { take, switchMap } from 'rxjs/operators';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
 
 @Component({
   selector: 'app-paciente-detalhe',
@@ -20,7 +21,8 @@ export class PacienteDetalheComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertModalService,
-    private service: PacienteService) {                
+    private service: PacienteService,
+    private ns: NotificationService) {                
       route.params.subscribe(val => {        
         this.onRefresh();
       });
@@ -40,6 +42,10 @@ export class PacienteDetalheComponent implements OnInit {
     this.paciente = pacient;    
   }  
 
+  onNew(){
+    this.router.navigate(['/consultorio/paciente/novo']);    
+  }
+
   onDelete(paciente: Paciente) {
     const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
     result$.asObservable().pipe(
@@ -47,7 +53,8 @@ export class PacienteDetalheComponent implements OnInit {
       switchMap(result => result ? this.service.remove(paciente.id) : EMPTY)
     ).subscribe(
       success => {
-        this.onRefresh();
+        this.ns.notify('Paciente eliminado com sucesso.')
+        this.router.navigate(['/consultorio/paciente'])
       }
     );
   }
