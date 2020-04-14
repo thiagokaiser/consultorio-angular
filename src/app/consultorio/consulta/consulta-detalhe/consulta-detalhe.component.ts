@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { ConsultaService } from '../consulta.service';
 import { take, switchMap } from 'rxjs/operators';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
 
 @Component({
   selector: 'app-consulta-detalhe',
@@ -19,7 +20,8 @@ export class ConsultaDetalheComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertModalService,
-    private consultaService: ConsultaService) {                
+    private consultaService: ConsultaService,
+    private ns: NotificationService) {                
       route.params.subscribe(val => {        
         this.onRefresh();
       });
@@ -46,12 +48,13 @@ export class ConsultaDetalheComponent implements OnInit {
   }
 
   onDelete(consulta :Consulta){
-    const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
+    const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja eliminar a consulta?');
     result$.asObservable().pipe(
       take(1),
       switchMap(result => result ? this.consultaService.remove(consulta.id) : EMPTY)
     ).subscribe(
       success => {
+        this.ns.notify('Consulta eliminada com sucesso.')
         this.onCancel(consulta.id)
       }
     );  

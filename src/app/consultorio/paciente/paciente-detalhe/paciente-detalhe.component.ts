@@ -47,7 +47,7 @@ export class PacienteDetalheComponent implements OnInit {
   }
 
   onDelete(paciente: Paciente) {
-    const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
+    const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja eliminar o paciente?');
     result$.asObservable().pipe(
       take(1),
       switchMap(result => result ? this.service.remove(paciente.id) : EMPTY)
