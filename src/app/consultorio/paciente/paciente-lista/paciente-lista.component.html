@@ -15,7 +15,7 @@
         <button type="button" class="btn btn-default" (click)="onRefresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
       </div>
       <p></p>
-      <table class="table table-hover table-pointer" *ngIf="pacientes$ | async as pacientes; else loading">
+      <table class="table table-hover table-pointer"  style="max-width:800px;" *ngIf="pacientes$ | async as pacientes; else loading">
         <thead>
           <tr>
             <th>#</th>

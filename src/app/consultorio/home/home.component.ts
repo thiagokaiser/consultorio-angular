@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/shared/messages/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -7,14 +6,9 @@ import { NotificationService } from 'src/app/shared/messages/notification.servic
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private ns: NotificationService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  onNotify(){
-    this.ns.notify('aaaaaaaaaaaaaaaaaaaaaaa')
-    
-  }
+  }  
 
 }

@@ -13,7 +13,7 @@ export class UserDetailComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
   }
 
   user(): User{

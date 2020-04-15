@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { LoginComponent } from './login/login.component';
+import { PerfilDetalheComponent } from './perfil/perfil-detalhe/perfil-detalhe.component';
+import { PerfilFormComponent } from './perfil/perfil-form/perfil-form.component';
+import { loggedInGuard } from './loggedIn.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
-  }
+  },
+  {
+    path: 'perfil', component: PerfilDetalheComponent, canLoad: [loggedInGuard], canActivate: [loggedInGuard]
+  },
+  {
+    path: 'perfil/editar', component: PerfilFormComponent, canLoad: [loggedInGuard], canActivate: [loggedInGuard]
+  }  
 ];
 
 @NgModule({

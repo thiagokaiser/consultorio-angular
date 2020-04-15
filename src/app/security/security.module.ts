@@ -5,17 +5,20 @@ import { RegistrarComponent } from './registrar/registrar.component';
 import { SecurityRoutingModule } from './security-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { PerfilFormComponent } from './perfil/perfil-form/perfil-form.component';
+import { PerfilDetalheComponent } from './perfil/perfil-detalhe/perfil-detalhe.component';
+import { PerfilService } from './perfil/perfil.service';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrarComponent],
+  declarations: [LoginComponent, RegistrarComponent, PerfilFormComponent, PerfilDetalheComponent],
   imports: [
     CommonModule,
     SecurityRoutingModule,
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: []
+  providers: [PerfilService]
 })
 export class SecurityModule { }

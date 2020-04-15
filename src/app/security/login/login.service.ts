@@ -37,7 +37,8 @@ export class LoginService{
     }
 
     saveUserName(){        
-        var tokenDecoded = jwt_decode(this.user.accessToken);
+        var tokenDecoded = jwt_decode(this.user.accessToken);        
+        this.user.email = tokenDecoded['email'];
         this.user.firstName = tokenDecoded['firstName'];
         this.user.lastName = tokenDecoded['lastName'];
     }
@@ -46,7 +47,7 @@ export class LoginService{
         if(this.user == undefined){
             var sessionToken = localStorage.getItem('sessionToken');        
             if(sessionToken){
-                this.user = { accessToken: sessionToken}                                    
+                this.user = { accessToken: sessionToken }                                    
                 this.saveUserName()
             }        
         }        
