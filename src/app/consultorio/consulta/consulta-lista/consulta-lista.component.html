@@ -15,21 +15,23 @@
           <th>Paciente</th>
           <th>Dt Consulta</th>
           <th>Diagnostico</th>
-          <th>Exames</th>
-          <th>Retorno</th>
           <th>Conduta</th>
-          <th></th>
+          <th>Exames</th>
+          <th>Retorno</th>          
+          <th>Cid</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let consulta of consultas" (click)="onDetalhe(consulta.id)">
           <td>{{ consulta.id }}</td>
-          <td>{{ consulta.paciente.nome }}</td>
+          <td>{{ consulta.paciente.nome | slice:0:25 }}</td>
           <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
-          <td>{{ consulta.diagnostico }}</td>
-          <td>{{ consulta.exames }}</td>
-          <td>{{ consulta.retorno }}</td>
-          <td>{{ consulta.conduta }}</td>          
+          <td>{{ consulta.diagnostico | slice:0:35 }}</td>
+          <td>{{ consulta.conduta | slice:0:35 }}</td>          
+          <td>{{ consulta.exames | slice:0:35 }}</td>
+          <td>{{ consulta.retorno | date: 'MM/yyyy' }}</td>
+          <td>{{ consulta.cid }}</td>
+          
         </tr>
       </tbody>
     </table>

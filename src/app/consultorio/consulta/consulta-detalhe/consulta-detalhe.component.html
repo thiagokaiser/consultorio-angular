@@ -11,39 +11,37 @@
             <button class="btn btn-default" (click)="onCancel(consulta.pacienteId)"><i class="fa fa-undo" aria-hidden="true"></i> Voltar</button>
         </div>
         <p></p>
-        <table class="table" style="max-width:500px;">
-            <tbody>
-                <tr>
-                    <th>ID</th>
-                    <td>{{ consulta.id }}</td>
-                </tr>
-                <tr>
-                    <th>PacienteId</th>
-                    <td>{{ consulta.pacienteId }}</td>
-                </tr>
+        <table class="table" style="max-width:800px;">
+            <tbody>                
                 <tr>
                     <th>Data Consulta</th>
                     <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy' }}</td>
                 </tr>
                 <tr>
                     <th>Diagnóstico</th>
-                    <td>{{ consulta.diagnostico }}</td>
-                </tr>
+                    <td>
+                        <textarea readonly class="form-control" id="exames" rows=5 cols=40>{{ consulta.diagnostico }}</textarea>                        
+                    </td>
+                </tr>                
                 <tr>
-                    <th>CID</th>
-                    <td>{{ consulta.cid }}</td>
+                    <th>Conduta</th>
+                    <td>
+                        <textarea readonly class="form-control" id="exames" rows=5>{{ consulta.conduta }}</textarea>                        
+                    </td>
                 </tr>
                 <tr>
                     <th>Exames</th>
-                    <td>{{ consulta.exames }}</td>
+                    <td>
+                        <textarea readonly class="form-control" id="exames" rows=5>{{ consulta.exames }}</textarea>                        
+                    </td>
                 </tr>
                 <tr>
                     <th>Retorno</th>
-                    <td>{{ consulta.retorno }}</td>
-                </tr>
+                    <td>{{ consulta.retorno | date: 'MM/yyyy' }}</td>
+                </tr>                
                 <tr>
-                    <th>Conduta</th>
-                    <td>{{ consulta.conduta }}</td>
+                    <th>CID</th>
+                    <td>{{ consulta.cid }}</td>
                 </tr>
             </tbody>
         </table>              

@@ -6,7 +6,7 @@ export interface Consulta{
     cid: string, 
     dtConsulta: Date,
     exames: string, 
-    retorno: string
+    retorno: Date
 }
 
 export interface ListConsulta{

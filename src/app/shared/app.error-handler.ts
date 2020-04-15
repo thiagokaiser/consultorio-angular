@@ -19,7 +19,13 @@ export class ApplicationErrorHandler extends ErrorHandler{
                 this.ns.notify('Recurso não encontrado.')
             }
             if(errorResponse instanceof HttpErrorResponse){                        
-                switch(errorResponse.status){
+                switch(errorResponse.status){        
+                    case 0:
+                        this.ns.notify('Banco fora.')
+                        break;            
+                    case 400:
+                        this.ns.notify('Ocorreram erros.')
+                        break;
                     case 401:                        
                         this.injector.get(LoginService).logout()
                         this.ns.notify('Não Autorizado.')
@@ -29,8 +35,8 @@ export class ApplicationErrorHandler extends ErrorHandler{
                         break;
                     case 404:                        
                         this.ns.notify('Recurso não encontrado.')
-                        break;
-                    default:
+                        break;                    
+                    default:                        
                         this.ns.notify('Recurso não encontrado.')
                         break;
                                        
