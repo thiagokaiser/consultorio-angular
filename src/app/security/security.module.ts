@@ -9,8 +9,6 @@ import { PerfilFormComponent } from './perfil/perfil-form/perfil-form.component'
 import { PerfilDetalheComponent } from './perfil/perfil-detalhe/perfil-detalhe.component';
 import { PerfilService } from './perfil/perfil.service';
 
-
-
 @NgModule({
   declarations: [LoginComponent, RegistrarComponent, PerfilFormComponent, PerfilDetalheComponent],
   imports: [

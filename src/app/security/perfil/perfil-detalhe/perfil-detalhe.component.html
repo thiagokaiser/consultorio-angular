@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12 imagem_perfil" style="max-width:200px;">                    
                         <img [src]="imagePath" class="preview preview--rounded">                    
-                        <a href="#">Alterar Imagem</a>                    
+                        <a (click)="onChangeImg()">Alterar Imagem</a>                    
                     </div>
                     <div class="col-md-8 col-sm-6 col-xs-12">                                
                         <h4></h4>
@@ -23,7 +23,7 @@
                             <table>
                                 <tr><td><i class="glyphicon glyphicon-user"></i></td><td>{{ user.firstName }} {{ user.lastName }}</td></tr>
                                 <tr><td><i class="glyphicon glyphicon-envelope"></i></td><td>{{ user.email }}</td></tr>
-                                <tr><td><i class="glyphicon glyphicon-gift"></i></td><td>{{ user.dtNascimento }}</td></tr>
+                                <tr><td><i class="glyphicon glyphicon-gift"></i></td><td>{{ user.dtNascimento | date: 'dd/MM/yyyy' }}</td></tr>
                                 <tr><td><i class="glyphicon glyphicon-map-marker"></i></td><td>{{ user.cidade }} - {{ user.estado }}</td></tr>
                             </table>                        
                             <p>{{ user.descricao }}</p>
@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <hr>
-                <a class="btn btn-default" href="#">Editar Perfil</a>
-                <a class="btn btn-default" href="#">Alterar Senha</a>                     
+                <a class="btn btn-default" (click)="onEdit()">Editar Perfil</a>
+                <a class="btn btn-default" (click)="onChangePass()">Alterar Senha</a>                     
             </div>
             <ng-template #loading>
                 Carregando perfil...

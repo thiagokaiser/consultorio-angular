@@ -5,7 +5,9 @@ import { User } from '../user';
 import { take } from 'rxjs/operators';
 import { LoginService } from '../login/login.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class PerfilService{
 
     host = `${environment.API}security/perfil`
@@ -17,4 +19,10 @@ export class PerfilService{
     loadPerfil(email: string){        
         return this.http.post<User>(this.host, {'email': email}).pipe(take(1));
     }
+
+    updatePerfil(user: User){
+        console.log(user);        
+        return this.http.put(this.host, user).pipe(take(1));
+    }
+
 }

@@ -3,6 +3,7 @@ import { User } from '../../user';
 import { LoginService } from '../../login/login.service';
 import { PerfilService } from '../perfil.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-detalhe',
@@ -16,12 +17,25 @@ export class PerfilDetalheComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private router: Router
     ) { }
 
   ngOnInit() {  
     this.carregaPerfil();  
   }  
+
+  onEdit(){
+    this.router.navigate(['security/perfil/editar'])
+  }
+
+  onChangePass(){
+
+  }
+
+  onChangeImg(){
+
+  }
 
   carregaPerfil(){        
     this.user$ = this.perfilService.loadPerfil(this.loginService.user.email)    
