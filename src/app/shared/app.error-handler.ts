@@ -12,10 +12,9 @@ export class ApplicationErrorHandler extends ErrorHandler{
         super()        
     }
 
-    handleError(errorResponse: HttpErrorResponse | any){        
-        
+    handleError(errorResponse: HttpErrorResponse | any){                
         this.zone.run(() => {        
-            if(errorResponse instanceof Error){
+            if(errorResponse instanceof Error){                
                 this.ns.notify('Recurso não encontrado.')
             }
             if(errorResponse instanceof HttpErrorResponse){                        

@@ -17,6 +17,7 @@ export class PerfilFormComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;  
+  hasError = false;
   erros = null;  
 
   constructor(
@@ -26,6 +27,7 @@ export class PerfilFormComponent implements OnInit {
     private ns: NotificationService,
     private location: Location,
     private service: PerfilService,    
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -39,7 +41,8 @@ export class PerfilFormComponent implements OnInit {
       dtNascimento: [new Date(perfil.dtNascimento).toISOString().substring(0,10), [Validators.required]],
       cidade: [perfil.cidade, [Validators.required]],  
       estado: [perfil.estado, [Validators.required]],  
-      descricao: [perfil.descricao, [Validators.required]]        
+      descricao: [perfil.descricao, [Validators.required]],      
+      password: ['', [Validators.required]]
     });
   }
 
@@ -47,16 +50,20 @@ export class PerfilFormComponent implements OnInit {
     this.submitted = true;    
     if (this.form.valid) {      
       let msgSuccess = 'Alterado com sucesso';            
-      this.service.updatePerfil(this.form.getRawValue()).subscribe(
-        success => {
-          this.ns.notify(msgSuccess)                    
-          this.router.navigate(['/security/perfil']);          
-        },
-        error => {
-          this.erros = error.error.erros;
-          throw error          
-        }
-      );      
+      this.service.updatePerfil(this.form.getRawValue())
+                  .subscribe(
+                    success => {                                
+                      this.loginService.user.accessToken = success['accessToken']
+                      this.loginService.saveToken()
+                      this.ns.notify(msgSuccess)                    
+                      this.router.navigate(['/security/perfil']);          
+                    },
+                    error => { 
+                      this.hasError = true;                   
+                      this.erros = error.error.Message;
+                      throw error          
+                    }
+                  );      
     }
     else{
       this.form.markAllAsTouched();      
