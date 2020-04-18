@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegistrarComponent } from './registrar/registrar.component';
+import { RegistrarComponent } from './perfil/registrar/registrar.component';
 import { LoginComponent } from './login/login.component';
 import { PerfilDetalheComponent } from './perfil/perfil-detalhe/perfil-detalhe.component';
 import { PerfilFormComponent } from './perfil/perfil-form/perfil-form.component';

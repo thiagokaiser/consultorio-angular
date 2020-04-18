@@ -10,19 +10,22 @@ import { LoginService } from '../login/login.service';
 })
 export class PerfilService{
 
-    host = `${environment.API}security/perfil`
+    host = `${environment.API}security/`
 
     constructor(
         private http: HttpClient
         ){}
 
     loadPerfil(email: string){        
-        return this.http.post<User>(this.host, {'email': email}).pipe(take(1));
+        return this.http.post<User>(`${this.host}perfil`, {'email': email}).pipe(take(1));
     }
 
-    updatePerfil(user: User){
-        console.log(user);        
-        return this.http.put(this.host, user).pipe(take(1));
+    updatePerfil(user: User){        
+        return this.http.put(`${this.host}perfil`, user).pipe(take(1));
+    }
+
+    registrar(user: User){        
+        return this.http.post(`${this.host}registrar`, user).pipe(take(1));
     }
 
 }
