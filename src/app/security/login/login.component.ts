@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from './login.service';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private ns: NotificationService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -50,6 +52,10 @@ export class LoginComponent implements OnInit {
                               this.loginService.saveToken();
                               this.router.navigate([atob(this.navigateTo)]);                              
                             });
+  }
+
+  forgotPass(){
+    this.ns.notify("Entre em contato com o administrador")
   }
 
 }

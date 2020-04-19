@@ -4,6 +4,7 @@ import { LoginService } from '../../login/login.service';
 import { PerfilService } from '../perfil.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
 
 @Component({
   selector: 'app-perfil-detalhe',
@@ -18,7 +19,8 @@ export class PerfilDetalheComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private perfilService: PerfilService,
-    private router: Router
+    private router: Router,
+    private ns: NotificationService
     ) { }
 
   ngOnInit() {  
@@ -30,11 +32,11 @@ export class PerfilDetalheComponent implements OnInit {
   }
 
   onChangePass(){
-
+    this.router.navigate(['security/perfil/altera-senha'])
   }
 
   onChangeImg(){
-
+    this.ns.notify("Recurso indisponivel no momento.")
   }
 
   carregaPerfil(){        

@@ -6,6 +6,7 @@ import { PerfilDetalheComponent } from './perfil/perfil-detalhe/perfil-detalhe.c
 import { PerfilFormComponent } from './perfil/perfil-form/perfil-form.component';
 import { loggedInGuard } from './loggedIn.guard';
 import { PerfilResolverGuard } from './perfil/guards/perfil-resolver.guard';
+import { AlteraSenhaComponent } from './perfil/altera-senha/altera-senha.component';
 
 const routes: Routes = [
   {
@@ -21,8 +22,15 @@ const routes: Routes = [
     path: 'perfil', component: PerfilDetalheComponent, canLoad: [loggedInGuard], canActivate: [loggedInGuard]
   },
   {
-    path: 'perfil/editar', component: PerfilFormComponent, resolve: {user: PerfilResolverGuard}, canLoad: [loggedInGuard], canActivate: [loggedInGuard]
-  }  
+    path: 'perfil/editar', component: PerfilFormComponent, 
+    resolve: {user: PerfilResolverGuard}, 
+    canLoad: [loggedInGuard], canActivate: [loggedInGuard]
+  },
+  {
+    path: 'perfil/altera-senha', component: AlteraSenhaComponent, 
+    resolve: {user: PerfilResolverGuard}, 
+    canLoad: [loggedInGuard], canActivate: [loggedInGuard]
+  }    
 ];
 
 @NgModule({

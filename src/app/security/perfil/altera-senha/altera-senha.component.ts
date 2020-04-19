@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/messages/notification.service';
 import { PerfilService } from '../perfil.service';
 import { LoginService } from '../../login/login.service';
-import { NotificationService } from 'src/app/shared/messages/notification.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registrar',
-  templateUrl: './registrar.component.html',
-  styleUrls: ['./registrar.component.css']
+  selector: 'app-altera-senha',
+  templateUrl: './altera-senha.component.html',
+  styleUrls: ['./altera-senha.component.css']
 })
-export class RegistrarComponent implements OnInit {
+export class AlteraSenhaComponent implements OnInit {
 
   form: FormGroup
   submitted = false
@@ -23,38 +23,38 @@ export class RegistrarComponent implements OnInit {
     private loginService: LoginService,
     private ns: NotificationService,
     private router: Router,
+    private route: ActivatedRoute
     
     ) { }
 
   ngOnInit() {
+    const perfil = this.route.snapshot.data['user'];    
+
     this.form = this.fb.group({
-      email: ['',[Validators.required, Validators.email]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],      
-      password: ['', [Validators.required]],
-      confirmPassword: ['']
+      email: [{ value: perfil.email, disabled: true }],      
+      oldPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required]],
+      confirmNewPassword: [''],
     }, {validator: this.checkPasswords });
   }
 
   checkPasswords(group: FormGroup) {
-    let pass = group.controls.password.value;
-    let confirmPass = group.controls.confirmPassword.value;    
+    let pass = group.controls.newPassword.value;
+    let confirmPass = group.controls.confirmNewPassword.value;    
     return pass === confirmPass ? null : { notSame: true }     
   }
 
   hasSuccessPass(): boolean{            
-    return this.form.controls.password.dirty && (this.checkPasswords(this.form) == null)
+    return this.form.controls.newPassword.dirty && (this.checkPasswords(this.form) == null)
   } 
 
   onSubmit() {        
     this.submitted = true;    
     if (this.form.valid) {      
-      let msgSuccess = 'Registrado com sucesso';              
-      this.service.registrar(this.form.getRawValue())
+      let msgSuccess = 'Senha alterada com sucesso';              
+      this.service.changePassword(this.form.getRawValue())
                   .subscribe(
-                    success => {                                                      
-                      this.loginService.user = {accessToken : success['accessToken']}                      
-                      this.loginService.saveToken()
+                    success => {                                                                            
                       this.ns.notify(msgSuccess)                    
                       this.router.navigate(['/security/perfil']);          
                     },
@@ -75,6 +75,6 @@ export class RegistrarComponent implements OnInit {
   onCancel() {    
     this.submitted = false;
     this.form.reset();        
-    this.router.navigate(['/security/login'])
+    this.router.navigate(['/security/perfil'])
   }
 }

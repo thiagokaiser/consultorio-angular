@@ -8,9 +8,10 @@ import { SharedModule } from '../shared/shared.module';
 import { PerfilFormComponent } from './perfil/perfil-form/perfil-form.component';
 import { PerfilDetalheComponent } from './perfil/perfil-detalhe/perfil-detalhe.component';
 import { PerfilService } from './perfil/perfil.service';
+import { AlteraSenhaComponent } from './perfil/altera-senha/altera-senha.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegistrarComponent, PerfilFormComponent, PerfilDetalheComponent],
+  declarations: [LoginComponent, RegistrarComponent, PerfilFormComponent, PerfilDetalheComponent, AlteraSenhaComponent],
   imports: [
     CommonModule,
     SecurityRoutingModule,
