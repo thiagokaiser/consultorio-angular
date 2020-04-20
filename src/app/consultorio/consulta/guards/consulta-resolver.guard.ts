@@ -22,7 +22,7 @@ export class ConsultaResolverGuard implements Resolve<Consulta> {
         id: 0,
         pacienteId:  route.parent.params['id'],
         conduta: null,
-        dtConsulta: null,
+        dtConsulta: new Date(Date.now()),
         retorno: null,
         diagnostico: null,
         exames: null,

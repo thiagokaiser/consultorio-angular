@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultaService } from '../consulta.service';
 import { Observable, pipe, observable, BehaviorSubject } from 'rxjs';
 import { Consulta, ListConsulta } from '../consulta';
 import { PaginationInstance } from 'ngx-pagination';
 import { tap } from 'rxjs/operators';
+import { Sort, MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-consulta-lista-all',
@@ -11,56 +12,52 @@ import { tap } from 'rxjs/operators';
 })
 export class ConsultaListaAllComponent implements OnInit {  
 
-  consultas$ : Observable<ListConsulta>;
-  pagesize: number = 5;
-  page: number = 1;
-  searchtext: string = "";
-  totalcount: number;
-  varcount;
-  orderby: string = "dtconsulta";
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+
+  consultas$ : Observable<ListConsulta>;  
+  searchtext: string = "";  
+  orderby: string = "dtconsulta desc";
 
   public config: PaginationInstance = {
       id: 'advanced',
-      itemsPerPage: this.pagesize,
-      currentPage: this.page,
+      itemsPerPage: 5,
+      currentPage: 1,
       totalItems: 100
   };
 
   constructor(
     private consultaService: ConsultaService
-  ) { }
+  ) { }  
 
   ngOnInit() {
     this.onRefresh();
-  }  
+  }
+
   onPageChange(pagina : number){    
-    this.config.currentPage = pagina;
-    this.page = pagina;
+    this.config.currentPage = pagina;    
     this.onRefresh();    
   }
+
   onPageSize(pagesize: number){    
-    this.config.itemsPerPage = pagesize;
-    this.pagesize = pagesize;    
-    this.page = 1;
-    this.onPageChange(this.page);
+    this.config.itemsPerPage = pagesize;    
+    this.onPageChange(1);
   }
+
   onSearch(search: string){    
-    this.searchtext = search;
-    this.page = 1;
-    this.onPageChange(this.page);
+    this.searchtext = search;    
+    this.onPageChange(1);
   }
+
+  sortData(sort: Sort){
+    this.orderby = `${sort.active} ${sort.direction}`    
+    this.onRefresh();
+  }  
+
   onRefresh(){
-    let params = {page: this.page, pagesize: this.pagesize, orderby: this.orderby, searchtext: "%" + this.searchtext + "%"};
+    let params = {page: this.config.currentPage, pagesize: this.config.itemsPerPage, orderby: this.orderby, searchtext: "%" + this.searchtext + "%"};
         
     this.consultas$ = this.consultaService.listPage(params).pipe(
-      tap(x => this.attTotalItems(x))
+      tap(x => this.config.totalItems = x['count'])
     )
-  }
-  attTotalItems(consultas){        
-    this.config.totalItems = consultas['count'];
-  }
-  onOrderBy(orderby: string){
-    this.orderby = orderby;
-    this.onRefresh();
-  }
+  }  
 }

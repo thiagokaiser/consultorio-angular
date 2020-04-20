@@ -12,6 +12,7 @@ import { PacienteDetalheComponent } from './paciente/paciente-detalhe/paciente-d
 import { PacienteFormComponent } from './paciente/paciente-form/paciente-form.component';
 import { PacienteListaComponent } from './paciente/paciente-lista/paciente-lista.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSortModule
   ],
   exports:[
     HomeComponent

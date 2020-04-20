@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AdminlteModule,    
+    AdminlteModule,
     ModalModule.forRoot(),
     SharedModule.forRoot()
   ],

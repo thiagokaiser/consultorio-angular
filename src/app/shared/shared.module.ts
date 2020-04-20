@@ -12,7 +12,7 @@ import { NotificationService } from './messages/notification.service';
   ConfirmModalComponent, InputContainerComponent, SnackbarComponent
 ],
   imports: [
-    CommonModule    
+    CommonModule
   ],
   exports:[
     ConfirmModalComponent, InputContainerComponent, SnackbarComponent
