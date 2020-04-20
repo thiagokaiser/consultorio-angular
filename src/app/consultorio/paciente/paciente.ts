@@ -7,3 +7,8 @@ export interface Paciente{
     prontuario: string;
     convenio: string;    
 }
+
+export interface ListPaciente{
+    count: number;
+    consultas: Paciente[];
+}
