@@ -15,7 +15,7 @@ export class ConsultaService extends CrudService<Consulta>{
   }
 
   listPaciente(id){    
-    return this.http.get<Consulta[]>(`${environment.API}consulta/paciente/${id}`);
+    return this.http.get<ListConsulta>(`${environment.API}consulta/paciente/${id.id}/`, {params: id.params});
   }
   listPage(pager) {    
     return this.http.get<ListConsulta>(`${environment.API}consulta/all`, {params: pager});

@@ -15,6 +15,6 @@ export class PacienteService extends CrudService<Paciente>{
   }
 
   listPage(pager) {    
-    return this.http.get<ListPaciente>(`${environment.API}paciente`, {params: pager}).pipe(tap(console.log));                   
+    return this.http.get<ListPaciente>(`${environment.API}paciente`, {params: pager});                   
   }  
 }

@@ -3,17 +3,32 @@
       <h3 class="box-title">Consultas</h3>      
   </div>
   <div class="box-body">  
-    <div class="btn-group btn-group-sm" role="group">
-      <button type="button" class="btn btn-default" (click)="onNovaConsulta()"><i class="fa fa-file-o" aria-hidden="true"></i> Nova</button>{{' '}}
-      <button type="button" class="btn btn-default" (click)="onRefresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
-    </div>
+    <div class="row" style="max-width: 400px;">
+      <div class="col-sm-6">
+        <div class="btn-group btn-group-sm" role="group">
+          <button type="button" class="btn btn-default" (click)="onNovaConsulta()"><i class="fa fa-file-o" aria-hidden="true"></i> Nova</button>{{' '}}
+          <button type="button" class="btn btn-default" (click)="onRefresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchtext" >
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" (click)="onSearch(searchtext)"><i class="fa fa-search"></i></button>
+          </span>
+        </div><!-- /input-group -->
+      </div>
+    </div>   
     <p></p>
-    <table class="table table-hover table-pointer" *ngIf="consultas$ | async as consultas; else loading">
+    <table class="table table-hover table-pointer"
+           matSort (matSortChange)="sortData($event)" 
+           matSortDisableClear="true"
+           matSortActive="dtconsulta" matSortDirection="desc">    
       <thead>
         <tr>
-          <th>#</th>
-          <th>Paciente</th>
-          <th>Dt Consulta</th>
+          <th mat-sort-header="id">#</th>
+          <th mat-sort-header="nome">Paciente</th>
+          <th mat-sort-header="dtconsulta">Dt Consulta</th>
           <th>Diagnostico</th>
           <th>Conduta</th>
           <th>Exames</th>
@@ -21,8 +36,8 @@
           <th>Cid</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let consulta of consultas" (click)="onDetalhe(consulta.id)">
+      <tbody *ngIf="consultas$ | async as consultas">
+        <tr *ngFor="let consulta of consultas.consultas | paginate: config" (click)="onDetalhe(consulta.id)">
           <td>{{ consulta.id }}</td>
           <td>{{ consulta.paciente.nome | slice:0:25 }}</td>
           <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
@@ -30,13 +45,26 @@
           <td>{{ consulta.conduta | slice:0:35 }}</td>          
           <td>{{ consulta.exames | slice:0:35 }}</td>
           <td>{{ consulta.retorno | date: 'MM/yyyy' }}</td>
-          <td>{{ consulta.cid }}</td>
-          
+          <td>{{ consulta.cid }}</td>          
         </tr>
       </tbody>
     </table>
-    <ng-template #loading>
-      <span>Carregando Consultas...</span>
-    </ng-template>    
+    <div class="row">
+      <div class="col-md-6">
+        <pagination-controls 
+          [id]="config.id"
+          (pageChange)="onPageChange($event)">
+        </pagination-controls>  
+      </div>
+      <div class="col-md-6">
+        Pag.Size:
+        <select class="" [ngModel]="config.itemsPerPage" (ngModelChange)="onPageSize($event)">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="100">100</option>
+        </select>
+      </div>    
+    </div>      
   </div><!-- /.box-body -->
 </div><!-- /.box -->         

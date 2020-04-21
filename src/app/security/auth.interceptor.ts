@@ -8,7 +8,8 @@ export class AuthInterceptor implements HttpInterceptor{
 
     constructor(private loginService: LoginService){}
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{        
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{   
+        //console.log(request);             
         if(this.loginService.isLoggedIn()){
             const authRequest = request.clone({setHeaders:{
                 'Authorization': `Bearer ${this.loginService.user.accessToken}`
