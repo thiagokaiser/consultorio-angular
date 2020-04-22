@@ -5,6 +5,7 @@ import { Consulta, ListConsulta } from '../consulta';
 import { PaginationInstance } from 'ngx-pagination';
 import { tap } from 'rxjs/operators';
 import { Sort, MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-lista-all',
@@ -26,7 +27,8 @@ export class ConsultaListaAllComponent implements OnInit {
   };
 
   constructor(
-    private consultaService: ConsultaService
+    private consultaService: ConsultaService,
+    private router: Router
   ) { }  
 
   ngOnInit() {
@@ -60,4 +62,8 @@ export class ConsultaListaAllComponent implements OnInit {
       tap(x => this.config.totalItems = x['count'])
     )
   }  
+
+  onDetalhe(consulta: Consulta){    
+    this.router.navigate([`/consultorio/paciente/detalhe/${consulta.pacienteId}/consulta/${consulta.id}`])    
+  }
 }
