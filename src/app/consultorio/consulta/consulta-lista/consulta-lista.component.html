@@ -26,24 +26,24 @@
            matSortActive="dtconsulta" matSortDirection="desc">    
       <thead>
         <tr>
-          <th mat-sort-header="id">#</th>
-          <th mat-sort-header="nome">Paciente</th>
-          <th mat-sort-header="dtconsulta">Dt Consulta</th>
-          <th>Diagnostico</th>
-          <th>Conduta</th>
-          <th>Exames</th>
-          <th>Retorno</th>          
-          <th>Cid</th>
+          <th style="width:5%" mat-sort-header="id">#</th>
+          <th style="width:15%" mat-sort-header="nome">Paciente</th>
+          <th style="width:8%" mat-sort-header="dtconsulta">Dt Consulta</th>
+          <th style="width:20%">Diagnostico</th>
+          <th style="width:20%">Conduta</th>
+          <th style="width:19%">Exames</th>
+          <th style="width:8%">Retorno</th>          
+          <th style="width:5%">Cid</th>
         </tr>
       </thead>
       <tbody *ngIf="consultas$ | async as consultas">
         <tr *ngFor="let consulta of consultas.consultas | paginate: config" (click)="onDetalhe(consulta.id)">
           <td>{{ consulta.id }}</td>
-          <td>{{ consulta.paciente.nome | slice:0:25 }}</td>
+          <td>{{ consulta.paciente.nome | slice:0:30 }}</td>
           <td>{{ consulta.dtConsulta | date: 'dd/MM/yyyy'}}</td>
-          <td>{{ consulta.diagnostico | slice:0:35 }}</td>
-          <td>{{ consulta.conduta | slice:0:35 }}</td>          
-          <td>{{ consulta.exames | slice:0:35 }}</td>
+          <td>{{ consulta.diagnostico | slice:0:40 }}</td>
+          <td>{{ consulta.conduta | slice:0:40 }}</td>          
+          <td>{{ consulta.exames | slice:0:40 }}</td>
           <td>{{ consulta.retorno | date: 'MM/yyyy' }}</td>
           <td>{{ consulta.cid }}</td>          
         </tr>
