@@ -28,7 +28,7 @@ export class PacienteDetalheComponent implements OnInit {
       });
     }
 
-  ngOnInit() {    
+  ngOnInit() {        
   }
 
   onEdit(id) {    

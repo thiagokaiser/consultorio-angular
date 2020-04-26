@@ -34,7 +34,7 @@ export class ConsultaDetalheComponent implements OnInit {
     this.router.navigate(['editar'], { relativeTo: this.route });         
   }
 
-  onCancel(id){
+  onCancel(id){        
     this.router.navigate(['/consultorio/paciente/detalhe/', id]);    
   }
 
@@ -55,7 +55,7 @@ export class ConsultaDetalheComponent implements OnInit {
     ).subscribe(
       success => {
         this.ns.notify('Consulta eliminada com sucesso.')
-        this.onCancel(consulta.id)
+        this.onCancel(consulta.pacienteId)        
       }
     );  
   }
