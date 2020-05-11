@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
                             },
                             error => {                              
                               this.hasError = true; 
-                              try{
-                                this.erros = error.error.Message;
+                              try{                                
+                                this.erros = error.error.message;
                               }                             
                               catch{
                                 throw error;

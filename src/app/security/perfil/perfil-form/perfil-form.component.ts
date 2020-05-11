@@ -60,7 +60,7 @@ export class PerfilFormComponent implements OnInit {
                     },
                     error => { 
                       this.hasError = true;                   
-                      this.erros = error.error.Message;
+                      this.erros = error.error.message;
                       throw error          
                     }
                   );      

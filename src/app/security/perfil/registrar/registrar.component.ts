@@ -59,10 +59,9 @@ export class RegistrarComponent implements OnInit {
                       this.router.navigate(['/security/perfil']);          
                     },
                     error => { 
-                      this.hasError = true;                   
-                      this.erros = error.error;
-                      console.log(this.erros);
-                      
+                      this.hasError = true;                              
+                      this.erros = error.error.erros;
+                      console.log(this.erros);                      
                       throw error          
                     }
                   );      

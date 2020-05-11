@@ -60,7 +60,7 @@ export class AlteraSenhaComponent implements OnInit {
                     },
                     error => { 
                       this.hasError = true;                   
-                      this.erros = error.error;
+                      this.erros = error.error.erros;
                       console.log(this.erros);
                       
                       throw error          
